@@ -1,0 +1,113 @@
+{
+  "title": "Jessy Pouliot",
+  "subtitle": "Senior Software Engineer",
+  "contact": {
+    "email": {
+      "label": "Email"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "linkedin": {
+      "label": "LinkedIn"
+    },
+    "github": {
+      "label": "Github"
+    },
+    "website": {
+      "label": "Website"
+    }
+  },
+  "languages": {
+    "title": "Languages",
+    "list": [
+      {
+        "language": "French",
+        "capacity": "Native"
+      },
+      {
+        "language": "English",
+        "capacity": "Proficient"
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "list": [
+      {
+        "school": "Cégep de Saint-Jérôme",
+        "certification": "Techniques d'intégration multimédia",
+        "completedOn": "2019"
+      }
+    ]
+  },
+  "qualities": {
+    "title": "Qualities",
+    "list": [
+      {
+        "quality": "Creativity",
+        "details": "I can easily come up with clever solutions to complex problems and I can easily freestyle quality user interfaces."
+      },
+      {
+        "quality": "Curiosity",
+        "details": "I want to understand everything and learn every quirks of the tools I use in order to make the best decisions every time."
+      },
+      {
+        "quality": "Perceverance",
+        "details": "Even when things aren't working out, I always figure it out."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "job": {
+      "ecamai": {
+        "title": "Senior software engineer (full-stack)",
+        "company": "Ecam.ai (GardaWorld)",
+        "from": "December 2022",
+        "to": "current",
+        "details": [
+          "next.js / node.js / react-native",
+          [
+            ["Building complex user interfaces such as:", [
+              "Configurable grid layouts for rendering multiple camera live streams, videos or anything else.",
+              "Drag & drop user experience that allowed for the easiest and effortless user experience when configuring the above mentioned grid layouts.",
+              "Infinitely scrollable timeline build to select the time for a stream of cameras."
+            ]],
+            "Writing performant SQL queries with permissions, keyset pagination (infinite paging) and more.",
+            "Using HTML, CSS and JS best practices for accessibility, performance and ease of use."
+          ]
+        ]
+      },
+      "renorun": {
+        "title": "Senior software engineer (front end)",
+        "company": "RenoRun",
+        "from": "September 2021",
+        "to": "November 2022",
+        "details": [
+          "react-native / next.js",
+          [
+            [
+              "Reduced our time to update copy from 2 weeks to a couple seconds by implementing a CMS combined with a JSON cache on a CDN for the fastest response time.",
+              "(We won the week-long hackathon!)"
+            ],
+            "Lead the mobile development by building a component library and being a key help resource for anything related to react-native"
+          ]
+        ]
+      },
+      "activix": {
+        "title": "Software engineer (full-stack)",
+        "company": "Activix",
+        "from": "May 2020",
+        "to": "September 2021",
+        "details": [
+          "react-native / laravel / vue.js",
+          [
+            "Built a video integration feature for our email communication editor in both our website and mobile app to allow for a more personal communication method during COVID travel restrictions.",
+            "Joined the react-native team to learn the technology and quickly grew to become the mobile team lead after fixed many issues with the app's codebase at the time."
+          ]
+        ]
+      }
+    }
+  }
+}

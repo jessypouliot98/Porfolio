@@ -12,7 +12,7 @@ export type ExperienceCardProps = {
 
 export function ExperienceCard({ job, company, Details, from, to }: ExperienceCardProps) {
   return (
-    <View style={tw("px-2 py-1.5 rounded bg-gray-100 gap-1")}>
+    <View style={tw("px-2 py-2 rounded bg-gray-100 gap-1")}>
       <View>
         <Text style={tw("text-xs leading-snug text-gray-500")}>{from} - {to}</Text>
         <Text style={tw("text-lg leading-snug text-black")}>{job}</Text>

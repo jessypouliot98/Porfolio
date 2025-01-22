@@ -1,0 +1,113 @@
+{
+  "title": "Jessy Pouliot",
+  "subtitle": "Ingénieur logiciel senior",
+  "contact": {
+    "email": {
+      "label": "E-mail"
+    },
+    "phone": {
+      "label": "Téléphone"
+    },
+    "linkedin": {
+      "label": "LinkedIn"
+    },
+    "github": {
+      "label": "Github"
+    },
+    "website": {
+      "label": "Site web"
+    }
+  },
+  "languages": {
+    "title": "Langues",
+    "list": [
+      {
+        "language": "Français",
+        "capacity": "Maternelle"
+      },
+      {
+        "language": "Anglais",
+        "capacity": "Compétent"
+      }
+    ]
+  },
+  "education": {
+    "title": "Éducation",
+    "list": [
+      {
+        "school": "Cégep de Saint-Jérôme",
+        "certification": "Techniques d'intégration multimédia",
+        "completedOn": "2019"
+      }
+    ]
+  },
+  "qualities": {
+    "title": "Qualités",
+    "list": [
+      {
+        "quality": "Créativité",
+        "details": "J'ai un facilité à trouver des solutions intelligentes à des problèmes complexes et je peux facilement \"freestyle\" des interfaces utilisateur de qualité."
+      },
+      {
+        "quality": "Curiosité",
+        "details": "Je veux apprendre toutes les subtilités des outils que j'utilise afin de prendre les meilleures décisions à chaque fois."
+      },
+      {
+        "quality": "Percévérance",
+        "details": "Même quand les choses ne fonctionnent pas comme prévu, je trouve toujours une solution."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Expérience",
+    "job": {
+      "ecamai": {
+        "title": "Ingénieur logiciel senior (full-stack)",
+        "company": "Ecam.ai (GardaWorld)",
+        "from": "décembre 2022",
+        "to": "actuel",
+        "details": [
+          "next.js / node.js / react-native",
+          [
+            ["Créer des interfaces utilisateur complexes telles que:", [
+              "Dispositions de grille configurables pour le rendu de \"stream\" de plusieurs caméras, de vidéos ou de tout autre élément.",
+              "Expérience utilisateur \"Drag & Drop\" qui permet une expérience utilisateur simple et sans effort pour de la configuration de grille mentionnées ci-dessus.",
+              "Chronologie à défilement infini conçue pour sélectionner le temps d'un \"stream\"."
+            ]],
+            "Écriture de requêtes SQL performantes avec autorisations, pagination de clés (pagination infinie) et plus encore.",
+            "Utiliser les meilleures pratiques HTML, CSS et JS pour l'accessibilité, les performances et la facilité d'utilisation."
+          ]
+        ]
+      },
+      "renorun": {
+        "title": "Ingénieur logiciel senior (front end)",
+        "company": "RenoRun",
+        "from": "septembre 2021",
+        "to": "novembre 2022",
+        "details": [
+          "react-native / next.js",
+          [
+            [
+              "Nous avons réduit notre temps de mise à jour de la copie de 2 semaines à quelques secondes en implémentant un CMS combiné à un cache JSON sur un CDN.",
+              "(Nous avons gagné le hackathon !)"
+            ],
+            "Diriger le développement mobile en créant une bibliothèque de composants et en étant une ressource d'aide clé pour tout ce qui concerne React-Native"
+          ]
+        ]
+      },
+      "activix": {
+        "title": "Ingénieur logiciel (full-stack)",
+        "company": "Activix",
+        "from": "mai 2020",
+        "to": "septembre 2021",
+        "details": [
+          "react-native / laravel / vue.js",
+          [
+            "Créé une fonctionnalité d'intégration vidéo pour notre éditeur d'e-mail sur notre site Web et notre application mobile.",
+            "Rejoint l'équipe React-Native pour apprendre la technologie et rapidement devenu le chef d'équipe mobile après avoir résolu de nombreux problèmes avec l'application à l'époque."
+          ]
+        ]
+      }
+    }
+  }
+}

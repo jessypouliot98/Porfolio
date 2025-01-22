@@ -13,7 +13,7 @@ export function ListItem({ children, style, bullet = "·" }: React.PropsWithChil
       <View>
         <Text style={tw("font-bold")}>{bullet}</Text>
       </View>
-      <View>
+      <View style={tw("flex-1")}>
         {children}
       </View>
     </View>

@@ -1,5 +1,5 @@
 import ReactPDF from "@react-pdf/renderer";
-import CvPage from "./enlish.page";
+import CvPage from "./english.page";
 
 export async function GET() {
   const pdfStream = await ReactPDF.renderToStream(<CvPage/>);

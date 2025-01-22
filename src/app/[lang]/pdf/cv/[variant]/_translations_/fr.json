@@ -1,0 +1,138 @@
+{
+  "title": "Jessy Pouliot",
+  "subtitle": "Ingénieur logiciel senior",
+  "contact": {
+    "email": {
+      "label": "E-mail"
+    },
+    "phone": {
+      "label": "Téléphone"
+    },
+    "linkedin": {
+      "label": "LinkedIn"
+    },
+    "github": {
+      "label": "Github"
+    },
+    "website": {
+      "label": "Site web"
+    }
+  },
+  "languages": {
+    "title": "Langues",
+    "list": [
+      {
+        "language": "Français",
+        "capacity": "Maternelle"
+      },
+      {
+        "language": "Anglais",
+        "capacity": "Compétent"
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Technologies",
+    "list": [
+      "Typescript",
+      "PostgreSQL",
+      "React.js",
+      "React-Native",
+      "Next.js",
+      "Node.js",
+      "TailwindCSS",
+      "Docker",
+      "Github Actions",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ]
+  },
+  "awards": {
+    "title": "Prix",
+    "list": [
+      {
+        "name": "Hackathon RenoRun 2021",
+        "content": [
+          { "text": "We reduced our time to update copy from 2 weeks to a couple seconds by implementing a CMS combined with a JSON cache on a CDN for the fastest response time." }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Éducation",
+    "list": [
+      {
+        "school": "Cégep de Saint-Jérôme",
+        "certification": "Techniques d'intégration multimédia",
+        "completedOn": "2019",
+        "content": [
+          { "text": "Learned web development from front end to back using HTML, CSS, JavaScript, React.js, PHP and Laravel." },
+          { "text": "Learned game development with Unity3D and C#" },
+          { "text": "Learned about UI/UX design rules" }
+        ]
+      }
+    ]
+  },
+  "qualities": {
+    "title": "Qualités",
+    "list": [
+      {
+        "quality": "Créativité",
+        "details": "J'ai un facilité à trouver des solutions intelligentes à des problèmes complexes et je peux facilement \"freestyle\" des interfaces utilisateur de qualité."
+      },
+      {
+        "quality": "Curiosité",
+        "details": "Je veux apprendre toutes les subtilités des outils que j'utilise afin de prendre les meilleures décisions à chaque fois."
+      },
+      {
+        "quality": "Percévérance",
+        "details": "Même quand les choses ne fonctionnent pas comme prévu, je trouve toujours une solution."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Expérience",
+    "job": {
+      "ecamai": {
+        "title": "Ingénieur logiciel senior (full-stack)",
+        "company": "Ecam.ai (GardaWorld)",
+        "location": "Montréal, QC (à distance)",
+        "from": "décembre 2022",
+        "to": "actuel",
+        "content": [
+          {
+            "text": "Créer des interfaces utilisateur complexes telles que:",
+            "list": [
+              { "text": "Dispositions de grille configurables pour le rendu de \"stream\" de plusieurs caméras, de vidéos ou de tout autre élément." },
+              { "text": "Expérience utilisateur \"Drag & Drop\" qui permet une expérience utilisateur simple et sans effort pour de la configuration de grille mentionnées ci-dessus." },
+              { "text": "Chronologie à défilement infini conçue pour sélectionner le temps d'un \"stream\"." }
+            ]
+          },
+          { "text": "Écriture de requêtes SQL performantes avec autorisations, pagination de clés (pagination infinie) et plus encore." }
+        ]
+      },
+      "renorun": {
+        "title": "Ingénieur logiciel senior (front end)",
+        "company": "RenoRun",
+        "location": "Montréal, QC (100% à distance)",
+        "from": "septembre 2021",
+        "to": "novembre 2022",
+        "content": [
+          { "text": "Diriger le développement mobile en créant une bibliothèque de composants et en étant une ressource d'aide clé pour tout ce qui concerne React-Native" }
+        ]
+      },
+      "activix": {
+        "title": "Ingénieur logiciel (full-stack)",
+        "company": "Activix",
+        "location": "Boisbriand, QC (à distance)",
+        "from": "mai 2020",
+        "to": "septembre 2021",
+        "content": [
+          { "text": "Créé une fonctionnalité d'intégration vidéo pour notre éditeur d'e-mail sur notre site Web et notre application mobile." },
+          { "text": "Rejoint l'équipe React-Native pour apprendre la technologie et rapidement devenu le chef d'équipe mobile après avoir résolu de nombreux problèmes avec l'application à l'époque." }
+        ]
+      }
+    }
+  }
+}

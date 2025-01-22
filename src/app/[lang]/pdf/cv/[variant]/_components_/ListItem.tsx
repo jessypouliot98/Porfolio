@@ -9,7 +9,7 @@ export type ListItemProps = {
 
 export function ListItem({ children, style, bullet = "·" }: React.PropsWithChildren<ListItemProps>) {
   return (
-    <View style={[tw("flex-row gap-2"), style ?? {}]}>
+    <View style={[tw("flex-row gap-1"), style ?? {}]}>
       <View>
         <Text style={tw("font-bold")}>{bullet}</Text>
       </View>

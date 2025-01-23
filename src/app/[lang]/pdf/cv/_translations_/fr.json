@@ -1,0 +1,139 @@
+{
+  "title": "Jessy Pouliot",
+  "subtitle": "Ingénieur logiciel senior",
+  "presentation": "Développeur full-stack expérimenté avec 5 ans d'expérience dans l'industrie à développer et à maintenir des applications web et mobiles, spécialisé dans les technologies basées sur Typescript telles que Next.js et React-Native. Expérience avérée dans la création d'APIs performantes, d'outils de développement exceptionnels et d'expériences utilisateur. Maîtrisant parfaitement ma stack technologique, je livre des fonctionnalités rapidement tout en dépassant les attentes en matière de qualité.",
+  "contact": {
+    "email": {
+      "label": "E-mail"
+    },
+    "phone": {
+      "label": "Téléphone"
+    },
+    "linkedin": {
+      "label": "LinkedIn"
+    },
+    "github": {
+      "label": "Github"
+    },
+    "website": {
+      "label": "Site web"
+    }
+  },
+  "languages": {
+    "title": "Langues",
+    "list": [
+      {
+        "language": "Français",
+        "capacity": "Maternelle"
+      },
+      {
+        "language": "Anglais",
+        "capacity": "Compétent"
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Technologies",
+    "list": [
+      "Typescript",
+      "PostgreSQL",
+      "React.js",
+      "React-Native",
+      "Next.js",
+      "Node.js",
+      "TailwindCSS",
+      "Docker",
+      "Github Actions",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ]
+  },
+  "other": {
+    "title": "Autres",
+    "content": [
+      {
+        "text": "Gagnant du hackathon RenoRun en 2021.",
+        "list": [
+          { "text": "Nous avons réduit le temps de mise à jour des contenus de 2 semaines à quelques secondes en implémentant un CMS combiné à un cache JSON sur un CDN pour un temps de réponse ultra-rapide." }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Éducation",
+    "list": [
+      {
+        "school": "Cégep de Saint-Jérôme",
+        "certification": "Techniques d'intégration multimédia",
+        "completedOn": "2019",
+        "content": [
+          { "text": "Développement web, du front-end au back-end, en utilisant HTML, CSS, JavaScript, React.js, PHP et Laravel." },
+          { "text": "Développement de jeux avec Unity3D et C#." },
+          { "text": "Acquisition des règles de design UI/UX." }
+        ]
+      }
+    ]
+  },
+  "qualities": {
+    "title": "Qualités",
+    "list": [
+      {
+        "quality": "Créativité",
+        "details": "J'ai une facilité à trouver des solutions astucieuses à des problèmes complexes et je peux facilement \"freestyle\" des interfaces utilisateur de qualité."
+      },
+      {
+        "quality": "Curiosité",
+        "details": "Je veux apprendre toutes les subtilités des outils que j'utilise afin de prendre les meilleures décisions à chaque fois."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Expérience",
+    "job": [
+      {
+        "title": "Ingénieur logiciel senior (full-stack)",
+        "company": "ECAM.ai (GardaWorld)",
+        "location": "Montréal, QC (à distance)",
+        "from": "décembre 2022",
+        "to": "actuel",
+        "content": [
+          {
+            "text": "Création d'interfaces utilisateur complexes, telles que :",
+            "list": [
+              { "text": "Des mises en page personnalisables par l'utilisateur, construites avec React et CSS \"gridTemplateAreas\", permettant d'afficher plusieurs sources média via un éditeur drag & drop pour une expérience utilisateur fluide." },
+              { "text": "Un composant de timeline à défilement infini, développé en React et VanillaJS, utilisant des solutions futé pour un rendu performant en affichant uniquement les éléments visibles." }
+            ]
+          },
+          { "text": "Développement d'APIs hautes performances en utilisant PostgreSQL, Trpc et React-Query." },
+          { "text": "Création d'une application mobile de A à Z avec React-Native, offrant une (quasi) parité fonctionnelle avec le site web." },
+          { "text": "Mise en place d'outils monorepo permettant un partage de code entre nos applications et l'amélioration de notre CI/CD, réduisant le temps et les coûts de développement." }
+        ]
+      },
+      {
+        "title": "Ingénieur logiciel senior (front end)",
+        "company": "RenoRun",
+        "location": "Montréal, QC (100% à distance)",
+        "from": "septembre 2021",
+        "to": "novembre 2022",
+        "content": [
+          { "text": "Collaboration étroite avec les designers et le chef de projet pour garantir la livraison des meilleures fonctionnalités possibles." },
+          { "text": "Création des bases de l'application mobile, améliorant la productivité des développeurs et la qualité du projet au sein de plusieurs équipes." },
+          { "text": "Ressource clé pour la résolution de bugs de l'application mobile, je me suis toujours porté volontaire pour aider, étant très doué pour identifier la cause principale de ces problèmes." }
+        ]
+      },
+      {
+        "title": "Ingénieur logiciel (full-stack)",
+        "company": "Activix",
+        "location": "Boisbriand, QC (à distance)",
+        "from": "mai 2020",
+        "to": "septembre 2021",
+        "content": [
+          { "text": "Ajout et maintenance d'APIs développées avec Laravel, MySQL et ElasticSearch." },
+          { "text": "Création d'une fonctionnalité vidéo pour notre éditeur d'e-mails sur le site web et l'application mobile, afin d'améliorer la communication et les ventes pendant les restrictions de voyage liées au COVID." },
+          { "text": "J'ai intégré l'équipe React-Native pour apprendre la technologie et rapidement obtenue le poste de responsable de l'équipe mobile." }
+        ]
+      }
+    ]
+  }
+}

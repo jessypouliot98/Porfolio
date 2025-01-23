@@ -1,8 +1,8 @@
-import { CvTranslation } from "@/app/[lang]/pdf/cv/[variant]/_translations_/types";
-import { SectionTitle } from "@/app/[lang]/pdf/cv/[variant]/_components_/SectionTitle";
+import { CvTranslation } from "@/app/[lang]/pdf/cv/_translations_/types";
+import { SectionTitle } from "@/app/[lang]/pdf/cv/_components_/SectionTitle";
 import { Text, View } from "@react-pdf/renderer";
 import { tw } from "@/utils/pdf/tailwind";
-import { Section } from "@/app/[lang]/pdf/cv/[variant]/_components_/Section";
+import { Section } from "@/app/[lang]/pdf/cv/_components_/Section";
 import React from "react";
 
 export function PartTechnologies({ t }: { t: CvTranslation }) {

@@ -1,0 +1,140 @@
+{
+  "title": "Jessy Pouliot",
+  "subtitle": "Senior Software Engineer",
+  "presentation": "Experienced full-stack developer with 5 years of experience in the industry developing and maintaining web & mobile applications with a strong focus on Typescript based technologies such as Next.js and React-Native. Proven track record in building high-performance APIs, amazing developer tools and impressive user experiences. Being very proficient with my technology stack, I can deliver features in a timely manner while exceeding quality expectations.",
+  "contact": {
+    "email": {
+      "label": "Email"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "linkedin": {
+      "label": "LinkedIn"
+    },
+    "github": {
+      "label": "Github"
+    },
+    "website": {
+      "label": "Website"
+    }
+  },
+  "languages": {
+    "title": "Languages",
+    "list": [
+      {
+        "language": "French",
+        "capacity": "Native"
+      },
+      {
+        "language": "English",
+        "capacity": "Proficient"
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Technologies",
+    "list": [
+      "Typescript",
+      "PostgreSQL",
+      "React.js",
+      "React-Native",
+      "Next.js",
+      "Node.js",
+      "TailwindCSS",
+      "Docker",
+      "Github Actions",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ]
+  },
+  "other": {
+    "title": "Other",
+    "content": [
+      {
+        "text": "RenoRun hackathon winner in 2021.",
+        "list": [
+          { "text": "We reduced our time to update copy from 2 weeks to a couple seconds by implementing a CMS combined with a JSON cache on a CDN for the fastest response time." }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "list": [
+      {
+        "school": "Cégep de Saint-Jérôme",
+        "certification": "Techniques d'intégration multimédia",
+        "completedOn": "2019",
+        "content": [
+          { "text": "Front end web development with HTML, CSS, JavaScript and React" },
+          { "text": "Back end web development with Php, Laravel and MySQL" },
+          { "text": "Game development with Unity3D and C#" },
+          { "text": "Graphic design and UI/UX design rules" }
+        ]
+      }
+    ]
+  },
+  "qualities": {
+    "title": "Qualities",
+    "list": [
+      {
+        "quality": "Creativity",
+        "details": "I can easily come up with clever solutions to complex problems and I can easily freestyle quality user interfaces."
+      },
+      {
+        "quality": "Curiosity",
+        "details": "I want to understand everything and learn every quirks of the tools I use in order to make the best decisions every time."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "job": [
+      {
+        "title": "Senior software engineer (full-stack)",
+        "company": "ECAM.ai (GardaWorld)",
+        "location": "Montreal, QC (remote)",
+        "from": "December 2022",
+        "to": "current",
+        "content": [
+          {
+            "text": "Building complex user interfaces such as:",
+            "list": [
+              { "text": "User customizable layouts built with React and CSS \"gridTemplateAreas\" for displaying multiple media sources via a drag & drop editor for a seamless user experience." },
+              { "text": "Infinitely scrollable timeline component built in React and VanillaJS, leveraging clever solutions to build a high-performance result by rendering only what is visible on." }
+            ]
+          },
+          { "text": "Building high performance APIs using postgreSQL, Redis, Trpc and react-query." },
+          { "text": "Built a mobile application from A to Z using React-Native with (almost) feature parity with the website" },
+          { "text": "Implemented monorepo tools allowing for easy sharing of code between both our apps, caching task results and refining our CI/CD pipeline, improving our pipeline time to finish, reducing machine cost and developer inefficiency." }
+        ]
+      },
+      {
+        "title": "Senior software engineer (front end)",
+        "company": "RenoRun",
+        "location": "Montreal, QC (full remote)",
+        "from": "September 2021",
+        "to": "November 2022",
+        "content": [
+          { "text": "Closely collaborated with the designers and project manager to improve making sure we deliver the best features we can." },
+          { "text": "Built the building blocks of the mobile app, improving developer productivity and quality across multiple teams." },
+          { "text": "Key resource in fixing bugs for the mobile app, I always volunteered to help as I was very good at finding the root of theses issues." }
+        ]
+      },
+      {
+        "title": "Software engineer (full-stack)",
+        "company": "Activix",
+        "location": "Boisbriand, QC (remote)",
+        "from": "May 2020",
+        "to": "September 2021",
+        "content": [
+          { "text": "Add and maintain APIs built in Laravel, MySQL and ElasticSearch" },
+          { "text": "Built a video feature for our email editor in both our website and mobile app to increase communication and sales during COVID travel restrictions." },
+          { "text": "I joined the react-native team to learn the technology and swifly grew to become the mobile team lead." }
+        ]
+      }
+    ]
+  }
+}

@@ -1,16 +1,16 @@
-import { SectionTitle } from "@/app/[lang]/pdf/cv/[variant]/_components_/SectionTitle";
+import { SectionTitle } from "@/app/[lang]/pdf/cv/_components_/SectionTitle";
 import { View } from "@react-pdf/renderer";
 import { tw } from "@/utils/pdf/tailwind";
-import { EducationCard } from "@/app/[lang]/pdf/cv/[variant]/_components_/EducationCard";
-import { Section } from "@/app/[lang]/pdf/cv/[variant]/_components_/Section";
+import { EducationCard } from "@/app/[lang]/pdf/cv/_components_/EducationCard";
+import { Section } from "@/app/[lang]/pdf/cv/_components_/Section";
 import React from "react";
-import { CvTranslation } from "@/app/[lang]/pdf/cv/[variant]/_translations_/types";
+import { CvTranslation } from "@/app/[lang]/pdf/cv/_translations_/types";
 
 export function PartEducation({ t }: { t: CvTranslation }) {
   return (
     <Section>
       <SectionTitle>{t.education.title}</SectionTitle>
-      <View style={tw("gap-3")}>
+      <View style={tw("gap-2")}>
         {t.education.list.map((education) => (
           <EducationCard
             key={education.certification}

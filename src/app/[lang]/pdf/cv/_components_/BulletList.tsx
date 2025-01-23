@@ -1,6 +1,6 @@
 import { Text, View } from "@react-pdf/renderer";
 import { tw } from "@/utils/pdf/tailwind";
-import { ListItem } from "@/app/[lang]/pdf/cv/[variant]/_components_/ListItem";
+import { ListItem } from "@/app/[lang]/pdf/cv/_components_/ListItem";
 import React from "react";
 
 export type BulletListProps = {

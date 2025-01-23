@@ -1,6 +1,6 @@
-import { CvTranslation } from "@/app/[lang]/pdf/cv/[variant]/_translations_/types";
+import { CvTranslation } from "@/app/[lang]/pdf/cv/_translations_/types";
 import { tw } from "@/utils/pdf/tailwind";
-import { ContactInfo } from "@/app/[lang]/pdf/cv/[variant]/_components_/ContactInfo";
+import { ContactInfo } from "@/app/[lang]/pdf/cv/_components_/ContactInfo";
 import { View } from "@react-pdf/renderer";
 import React from "react";
 
@@ -10,7 +10,7 @@ export type PartContactProps = {
 
 export function PartContact({ t }: PartContactProps) {
   return (
-    <View style={tw("flex flex-row flex-wrap gap-4")}>
+    <View style={tw("flex flex-row flex-wrap gap-3")}>
       <ContactInfo
         method={t.contact.email.label}
         label="jessypouliot98@gmail.com"

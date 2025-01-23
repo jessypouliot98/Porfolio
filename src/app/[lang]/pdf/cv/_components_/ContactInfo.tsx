@@ -9,11 +9,11 @@ export type ContactInfoProps = {
 
 export function ContactInfo({ method, label, href }: ContactInfoProps) {
   return (
-    <View style={tw("px-2 py-2 rounded bg-gray-100 gap-0.5")}>
+    <View style={tw("p-1.5 rounded bg-gray-100 gap-0.5")}>
       <Text style={tw("text-xs leading-tight text-blue-500")}>{method}</Text>
       <Link
         href={href}
-        style={tw("text-sm leading-tight text-black")}
+        style={tw("text-xs leading-tight text-black")}
       >
         {label}
       </Link>

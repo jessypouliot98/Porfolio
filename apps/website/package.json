@@ -17,6 +17,7 @@
   "devDependencies": {
     "typescript": "^5",
     "@repo/config-typescript": "*",
+    "@repo/config-tailwind": "*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

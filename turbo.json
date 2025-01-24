@@ -4,6 +4,17 @@
     "dev": {
       "persistent": true,
       "cache": false
+    },
+    "check:lint": {},
+    "check:style": {},
+    "check:types": {},
+    "code-quality": {
+      "dependsOn": ["check:lint", "check:style", "check:types"]
+    },
+    "fix:lint": {},
+    "fix:style": {},
+    "fix": {
+      "dependsOn": ["fix:lint", "fix:style"]
     }
   }
 }

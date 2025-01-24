@@ -6,22 +6,25 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "check:lint": "next lint --max-warnings 0",
+    "fix:lint": "next lint --max-warnings 0 --fix"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.1.6",
+    "@tailwindcss/postcss": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next": "15.1.6"
   },
   "devDependencies": {
     "typescript": "^5",
-    "@repo/config-typescript": "*",
+    "@repo/config-eslint": "*",
     "@repo/config-tailwind": "*",
+    "@repo/config-typescript": "*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "postcss": "^8.5.1",
+    "tailwindcss": "^4.0.0"
   }
 }

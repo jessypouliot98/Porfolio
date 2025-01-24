@@ -4,7 +4,6 @@ import { View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { LanguageCard } from "../../../components/LanguageCard";
 import { Section } from "../../../components/Section";
-import React from "react";
 
 export function PartLanguages({ t }: { t: CvTranslation }) {
   return (

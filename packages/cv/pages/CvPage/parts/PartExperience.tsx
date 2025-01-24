@@ -4,7 +4,6 @@ import { View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { ExperienceCard } from "../../../components/ExperienceCard";
 import { Section } from "../../../components/Section";
-import React from "react";
 import { BulletList } from "../../../components/BulletList";
 
 export type PartExperienceProps = {
@@ -16,8 +15,9 @@ export function PartExperience({ t }: PartExperienceProps) {
     <Section>
       <SectionTitle>{t.experience.title}</SectionTitle>
       <View style={tw("gap-2")}>
-        {t.experience.job.map((job) => (
+        {t.experience.job.map((job, i) => (
           <ExperienceCard
+            key={i}
             job={job.title}
             company={job.company}
             location={job.location}

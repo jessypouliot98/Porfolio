@@ -11,8 +11,8 @@ export function BulletList({ content, level = 0 }: BulletListProps) {
   const bullet = BulletList.getBullet(level);
   return (
     <View style={tw("gap-0.5")}>
-      {content.map((item, i) => (
-        <ListItem key={i} bullet={bullet}>
+      {content.map((item) => (
+        <ListItem key={item.text} bullet={bullet}>
           <View style={tw("gap-0.5")}>
             {typeof item.text === "string" && (
               <Text>{item.text}</Text>

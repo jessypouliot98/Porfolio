@@ -1,5 +1,4 @@
 import { Text, View } from "@react-pdf/renderer";
-import React from "react";
 import { tw } from "../utils/tailwind";
 
 export function SectionTitle({ children }: React.PropsWithChildren) {

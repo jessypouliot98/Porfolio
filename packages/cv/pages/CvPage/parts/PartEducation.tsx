@@ -3,7 +3,6 @@ import { View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { EducationCard } from "../../../components/EducationCard";
 import { Section } from "../../../components/Section";
-import React from "react";
 import { CvTranslation } from "../../../translations/types";
 
 export function PartEducation({ t }: { t: CvTranslation }) {

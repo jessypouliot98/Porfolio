@@ -3,7 +3,6 @@ import { Text, View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { StrengthCard } from "../../../components/StrengthCard";
 import { Section } from "../../../components/Section";
-import React from "react";
 import { CvTranslation } from "../../../translations/types";
 
 export function PartQualities({ t }: { t: CvTranslation }) {

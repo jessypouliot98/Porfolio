@@ -2,7 +2,6 @@ import { CvTranslation } from "../../../translations/types";
 import { tw } from "../../../utils/tailwind";
 import { ContactInfo } from "../../../components/ContactInfo";
 import { View } from "@react-pdf/renderer";
-import React from "react";
 
 export type PartContactProps = {
   t: CvTranslation;

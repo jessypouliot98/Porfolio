@@ -3,7 +3,6 @@ import { SectionTitle } from "../../../components/SectionTitle";
 import { Text, View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { Section } from "../../../components/Section";
-import React from "react";
 
 export function PartTechnologies({ t }: { t: CvTranslation }) {
   return (

@@ -3,7 +3,6 @@ import { SectionTitle } from "../../../components/SectionTitle";
 import { View } from "@react-pdf/renderer";
 import { tw } from "../../../utils/tailwind";
 import { Section } from "../../../components/Section";
-import React from "react";
 import { BulletList } from "../../../components/BulletList";
 
 export function PartOther({ t }: { t: CvTranslation }) {

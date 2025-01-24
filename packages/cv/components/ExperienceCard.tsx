@@ -1,5 +1,4 @@
 import { View, Text } from "@react-pdf/renderer";
-import React from "react";
 import { tw } from "../utils/tailwind";
 
 export type ExperienceCardProps = {

@@ -1,6 +1,5 @@
 import { View, Text } from "@react-pdf/renderer";
 import { tw } from "../utils/tailwind";
-import React from "react";
 
 export type StrengthCardProps = {
   strength: string;

@@ -12,7 +12,7 @@ import onlyWarn from "eslint-plugin-only-warn";
 export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strict,
   {
     plugins: {
       turbo: turboPlugin,
@@ -27,6 +27,11 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**"],
+    ignores: ["dist/**", "postcss.config.js"],
   },
+  {
+    rules: {
+      "@typescript-eslint/no-namespace": "off"
+    }
+  }
 ];

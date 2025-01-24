@@ -2,6 +2,11 @@
   "name": "@repo/cv",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "check:lint": "eslint --max-warnings 0",
+    "fix:lint": "eslint --max-warnings 0 --fix"
+  },
   "dependencies": {
     "@react-pdf/renderer": "^4.1.6",
     "react": "^19.0.0",
@@ -9,8 +14,10 @@
   },
   "devDependencies": {
     "@repo/config-typescript": "*",
-    "@types/node": "^20",
+    "@types/node": "*",
     "@types/react": "^19",
-    "typescript": "^5"
+    "autoprefixer": "~10.4",
+    "postcss": "~8.5",
+    "typescript": "*"
   }
 }

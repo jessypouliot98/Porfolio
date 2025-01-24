@@ -2,6 +2,7 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,7 +12,6 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.1.6",
-    "@tailwindcss/postcss": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next": "15.1.6"
@@ -21,6 +21,7 @@
     "@repo/config-eslint": "*",
     "@repo/config-tailwind": "*",
     "@repo/config-typescript": "*",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

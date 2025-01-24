@@ -24,7 +24,7 @@ export async function GET(
   }
 
   const pdfStream = await ReactPDF.renderToStream(<CvPage t={lang === "fr" ? fr : en} />);
-  return new Response(pdfStream as unknown as ReadableStream<any>, {
+  return new Response(pdfStream as unknown as ReadableStream<unknown>, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": contentDisposition ?? "",

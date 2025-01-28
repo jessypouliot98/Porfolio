@@ -1,5 +1,6 @@
+import sharedConfig from "@repo/config-tailwind";
+import { createTw } from "react-pdf-tailwind";
 import type { Config } from "tailwindcss";
-import sharedConfig from "@repo/config-tailwind/tailwind.config";
 
 const config: Pick<Config, "presets" | "content" | "theme"> = {
   // None required for this package
@@ -14,4 +15,4 @@ const config: Pick<Config, "presets" | "content" | "theme"> = {
   }
 };
 
-export default config;
+export const tw = createTw(config);

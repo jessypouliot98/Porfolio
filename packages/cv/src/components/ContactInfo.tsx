@@ -1,5 +1,5 @@
 import { View, Text, Link } from "@react-pdf/renderer";
-import { tw } from "../utils/tailwind";
+import { tw } from "../utils/tailwind.js";
 
 export type ContactInfoProps = {
   method: string;

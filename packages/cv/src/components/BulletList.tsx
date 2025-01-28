@@ -1,6 +1,6 @@
 import { Text, View } from "@react-pdf/renderer";
-import { tw } from "../utils/tailwind";
-import { ListItem } from "./ListItem";
+import { tw } from "../utils/tailwind.js";
+import { ListItem } from "./ListItem.js";
 
 export type BulletListProps = {
   level?: number;

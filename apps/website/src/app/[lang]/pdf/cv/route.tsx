@@ -1,9 +1,9 @@
 import ReactPDF from "@react-pdf/renderer";
 import { NextRequest } from "next/server";
-import { CvPage } from "@repo/cv/pages/CvPage/CvPage";
-import en from "@repo/cv/translations/en.json"
-import fr from "@repo/cv/translations/fr.json"
-import { registerFonts } from "@repo/cv/utils/registerFonts";
+import { CvPage } from "@repo/cv/src/pages/CvPage/CvPage";
+import en from "@repo/cv/src/translations/en.json"
+import fr from "@repo/cv/src/translations/fr.json"
+import { registerFonts } from "@repo/cv/src/utils/registerFonts";
 import path from "path";
 
 type Params = {

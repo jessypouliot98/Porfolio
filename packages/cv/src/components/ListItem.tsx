@@ -1,5 +1,5 @@
 import { View, Text, Styles } from "@react-pdf/renderer";
-import { tw } from "../utils/tailwind";
+import { tw } from "../utils/tailwind.js";
 
 export type ListItemProps = {
   bullet?: string;

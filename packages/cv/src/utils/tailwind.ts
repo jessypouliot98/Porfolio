@@ -1,11 +1,6 @@
-import sharedConfig from "@repo/config-tailwind";
 import { createTw } from "react-pdf-tailwind";
-import type { Config } from "tailwindcss";
 
-const config: Pick<Config, "presets" | "content" | "theme"> = {
-  // None required for this package
-  content: [],
-  presets: [sharedConfig],
+export const tw = createTw({
   theme: {
     extend: {
       fontFamily: {
@@ -13,6 +8,4 @@ const config: Pick<Config, "presets" | "content" | "theme"> = {
       }
     }
   }
-};
-
-export const tw = createTw(config);
+});

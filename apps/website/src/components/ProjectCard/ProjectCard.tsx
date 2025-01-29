@@ -32,7 +32,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
         <Card
           asChild
           id={id}
-          className="block relative text-left size-full"
+          className="block relative text-left size-full !bg-black"
         >
           <motion.button
             type="button"

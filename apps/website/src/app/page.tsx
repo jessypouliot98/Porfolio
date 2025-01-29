@@ -12,7 +12,10 @@ export default async function Home() {
       <Header
         className="pb-(--overlap)"
       />
-      <main className="w-full max-w-screen-2xl mx-auto -mt-[var(--overlap)] space-y-12 py-12">
+      <main
+        id="main"
+        className="w-full max-w-screen-2xl mx-auto -mt-[var(--overlap)] space-y-12 py-12"
+      >
         <section id="projects" className="p-6 space-y-6">
           <h2 className="font-pixel text-4xl text-white">Projects</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

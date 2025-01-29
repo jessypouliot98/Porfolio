@@ -1,50 +1,81 @@
 "use client"
 
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
-import { motion, useMotionValueEvent, useScroll, useTransform, easeIn } from "motion/react";
+import { MainMenu } from "../MainMenu/MainMenu";
+
+function convertRemToPixels(rem: number) {
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
 
 export type HeaderProps = {
   className?: string;
 };
 
 export function Header({ className }: HeaderProps) {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const [colors, setColors] = useState<[a: string, b: string]>(["#000", "#000"]);
-  const animatedOpacity = useTransform(scrollY, [0, window.innerHeight-300], colors, {
-    ease: easeIn
-  });
+  const [header, setHeader] = useState<HTMLElement | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
-  useMotionValueEvent(animatedOpacity, "change", (current) => {
-    headerRef.current?.style.setProperty("--from", current);
-  });
-
-  useLayoutEffect(() => {
-    const header = headerRef.current;
+  useEffect(() => {
     if (!header) return;
-    const a = getComputedStyle(header).getPropertyValue("--from-a");
-    const b = getComputedStyle(header).getPropertyValue("--from-b");
-    setColors([a, b]);
-  }, []);
+    const abortController = new AbortController();
+
+    let isTransparent = navRef.current?.getAttribute("data-transparent") !== "false";
+    let rect = header.getBoundingClientRect();
+    const observer = new ResizeObserver(() => {
+      // TODO - Rate limit
+      rect = header.getBoundingClientRect();
+    });
+    observer.observe(header, {});
+
+    const update = () => {
+      const overlapRem = getComputedStyle(header).getPropertyValue("--overlap");
+      if (window.scrollY < rect.bottom - convertRemToPixels(parseFloat(overlapRem))) {
+        if (!isTransparent) {
+          navRef.current?.setAttribute("data-transparent", "true");
+          isTransparent = true;
+        }
+      } else {
+        if (isTransparent) {
+          navRef.current?.setAttribute("data-transparent", "false");
+          isTransparent = false;
+        }
+      }
+    }
+
+    window.addEventListener("scroll", update, { signal: abortController.signal });
+    update();
+
+    return () => {
+      observer.disconnect();
+      abortController.abort();
+    }
+  }, [header]);
 
   return (
-    <motion.header
-      ref={headerRef}
+    <header
+      ref={setHeader}
       className={clsx(
-        "[--from-a:theme(color.blue.950)] [--from-b:theme(color.blue.600)]",
-        "[--from:var(--from-a)]",
-        "bg-gradient-to-b from-(--from) from-90% to-transparent",
+        "[--h-nav:theme(height.12)] pt-(--h-nav)",
+        "[--from-header-a:theme(color.blue.950)] [--from-header-b:theme(color.gray.50)]",
+        "[--from-header:var(--from-header-a)]",
+        "bg-gradient-to-b from-(--from-header) from-90% to-transparent",
         className,
       )}
     >
-      <nav className="sticky top-0 inset-x-0 bg-white px-2 h-14">
-        <menu className="flex gap-2 w-full max-w-screen-2xl mx-auto">
-          <li>Home</li>
-          <li>Projects</li>
-        </menu>
+      <nav
+        ref={navRef}
+        data-transparent={true}
+        className={clsx(
+          "group/nav transition-colors z-10 shadow fixed h-(--h-nav) top-0 inset-x-0",
+          "bg-white data-[transparent=true]:bg-transparent",
+        )}
+      >
+        <MainMenu />
       </nav>
-      <div className="h-[500px]"/>
-    </motion.header>
+      <section id="hero">
+        <div className="h-[500px]"/>
+      </section>
+    </header>
   )
 }

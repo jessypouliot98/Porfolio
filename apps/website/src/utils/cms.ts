@@ -9,7 +9,6 @@ export const contentfulClient = createClient({
 
 export function contentfulImageProps(asset: Asset): { src: string; alt: string } {
   const file = asset.fields.file;
-  console.log(file)
   assertDefined(file, "File must be defined");
   const { url, fileName, contentType } = file;
   assert(typeof contentType === "string" && contentType.startsWith("image/"), "Must be an image");

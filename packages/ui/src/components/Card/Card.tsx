@@ -20,7 +20,7 @@ export function Card<TAsChild extends boolean = false>({
   return (
     <Comp
       className={clsx(
-        "bg-white shadow",
+        "bg-white shadow-xl shadow-gray-500",
         className,
       )}
       {...cardProps}

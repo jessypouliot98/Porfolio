@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+:root {
+  --font-pixel: monospace
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+@layer utilities {
+
+  .font-sans {
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  }
+
+  .font-pixel {
+    font-family: var(--font-pixel), monospace;
+  }
+
 }

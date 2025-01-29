@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Lexend, Jersey_15 } from "next/font/google";
 import "./globals.css";
 import "@repo/ui/dist/styles.css"
 import React from "react";
 
-const robotoSans = Roboto({
+const lexendSans = Lexend({
   variable: "--font-sans",
-  weight: ["500", "700"],
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const micro5 = Jersey_15({
+  variable: "--font-pixel",
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -19,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${robotoSans.className} ${robotoSans.variable} antialiased`}>
+      <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased`}>
         {children}
       </body>
     </html>

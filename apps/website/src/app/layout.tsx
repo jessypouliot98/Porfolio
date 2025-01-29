@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased`}>
+      <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
         {children}
       </body>
     </html>

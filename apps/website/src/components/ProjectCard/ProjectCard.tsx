@@ -40,18 +40,22 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
             layoutId={`${id}-container`}
           >
             <motion.div
-              className="size-full"
+              className="bg-black size-full"
               layoutId={`${id}-image`}
             >
               <Image
                 className="object-cover"
+                style={{
+                  maskMode: "alpha",
+                  maskImage: "linear-gradient(to top, transparent 0%, rgba(255,255,255,1) 80%)",
+                }}
                 src={thumbnail}
                 alt={`${title} thumbnail`}
                 fill
               />
             </motion.div>
             <div
-              className="absolute bottom-0 inset-x-0 p-1.5 pt-6 text-white bg-gradient-to-t from-black/70 via-black/70 to-transparent"
+              className="absolute bottom-0 inset-x-0 p-1.5 text-white"
             >
               <motion.h2
                 className="font-pixel text-xl leading-tight"

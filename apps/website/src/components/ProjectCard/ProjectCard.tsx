@@ -26,7 +26,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
     <>
       <div className={clsx(
         "transition scale-100 hover:scale-105 focus-within:scale-105",
-        "aspect-video bg-gray-200",
+        "aspect-video bg-gray-500/30",
         className,
       )}>
         <Card
@@ -51,18 +51,19 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 }}
                 src={thumbnail}
                 alt={`${title} thumbnail`}
+                loading="eager"
                 fill
               />
             </motion.div>
             <div
               className="absolute bottom-0 inset-x-0 p-1.5 text-white"
             >
-              <motion.h2
-                className="font-pixel text-xl leading-tight"
+              <motion.h3
+                className="font-pixel text-xl leading-tight truncate"
                 layoutId={`${id}-title`}
               >
                 {title}
-              </motion.h2>
+              </motion.h3>
               <motion.ul
                 className="w-full overflow-hidden flex gap-1"
                 layoutId={`${id}-techs`}
@@ -94,6 +95,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 className="object-contain"
                 src={thumbnail}
                 alt={`${title} thumbnail`}
+                loading="lazy"
                 fill
               />
             </motion.div>
@@ -123,12 +125,12 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                   </li>
                 ))}
               </motion.ul>
-              <motion.h2
+              <motion.h3
                 className="font-pixel text-5xl text-blue-500"
                 layoutId={`${id}-title`}
               >
                 {title}
-              </motion.h2>
+              </motion.h3>
               <div>
                 {Content}
               </div>

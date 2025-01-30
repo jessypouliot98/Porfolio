@@ -4,9 +4,15 @@ import { queryProjectList } from "@repo/api/src/contentful/project/queries/query
 import { contentfulClient, contentfulImageProps } from "../utils/cms";
 import { Header } from "../parts/Header/Header";
 import { Footer } from "../parts/Footer/Footer";
+import { queryTechnologyList } from "@repo/api/src/contentful/technology/queries/queryTechnologyList";
+import Image from "next/image";
+import { Card } from "@repo/ui/src/components/Card/Card";
+import { clsx } from "clsx";
 
 export default async function Home() {
   const { items: projects } = await queryProjectList(contentfulClient);
+  const { items: technologies } = await queryTechnologyList(contentfulClient);
+
   return (
     <div className="[--overlap:theme(spacing.96)] min-h-screen">
       <Header
@@ -39,11 +45,39 @@ export default async function Home() {
         </section>
         <section id="technologies" className="p-6 space-y-3">
           <h2 className="font-pixel text-4xl text-blue-500">Technologies</h2>
-          <div className="space-y-2">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa illo magni maiores nesciunt quas, repellendus repudiandae sapiente. Assumenda deleniti facilis, necessitatibus praesentium quia repellat repellendus similique sint totam voluptatibus?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa illo magni maiores nesciunt quas, repellendus repudiandae sapiente. Assumenda deleniti facilis, necessitatibus praesentium quia repellat repellendus similique sint totam voluptatibus?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa illo magni maiores nesciunt quas, repellendus repudiandae sapiente. Assumenda deleniti facilis, necessitatibus praesentium quia repellat repellendus similique sint totam voluptatibus?</p>
-          </div>
+          <ul className="flex flex-wrap justify-center gap-6">
+            {technologies.map((technology) => {
+              const level = technology.fields.level ?? 40;
+              const indexLevel = Math.floor(level / 10);
+              const size = [48,36,28][indexLevel] ?? 28;
+              return (
+                <li
+                  key={technology.sys.id}
+                  className="grid place-items-center"
+                  data-level={level}
+                  data-index-level={indexLevel}
+                >
+                  <Card
+                    className={clsx(
+                      "p-2 flex gap-2 items-center",
+                      "text-xs",
+                      "data-[level=1]:text-base",
+                      "data-[level=2]:text-sm",
+                    )}
+                  >
+                    <div className="aspect-square grid place-items-center">
+                      <Image
+                        {...contentfulImageProps(technology.fields.image!)}
+                        width={size}
+                        height={size}
+                      />
+                    </div>
+                    <div>{technology.fields.name}</div>
+                  </Card>
+                </li>
+              )
+            })}
+          </ul>
         </section>
       </main>
       <Footer/>

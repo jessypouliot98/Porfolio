@@ -27,8 +27,9 @@ export function Header({ className }: HeaderProps) {
     observer.observe(header, {});
 
     const update = () => {
+      const headerBottom = header.offsetTop + header.offsetHeight;
       const overlapRem = getComputedStyle(header).getPropertyValue("--overlap");
-      if (window.scrollY < rect.bottom - convertRemToPixels(parseFloat(overlapRem))) {
+      if (window.scrollY < headerBottom - convertRemToPixels(parseFloat(overlapRem))) {
         if (!isTransparent) {
           navRef.current?.setAttribute("data-transparent", "true");
           isTransparent = true;

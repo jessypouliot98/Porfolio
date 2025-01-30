@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --font-pixel: monospace
+  --font-pixel: monospace;
+  --h-nav: theme(height.12);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--h-nav);
 }
 
 body {

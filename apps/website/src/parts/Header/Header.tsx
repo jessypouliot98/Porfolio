@@ -3,10 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { MainMenu } from "../MainMenu/MainMenu";
-
-function convertRemToPixels(rem: number) {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-}
+import { Hero } from "../Hero/Hero";
+import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
 
 export type HeaderProps = {
   className?: string;
@@ -56,10 +54,8 @@ export function Header({ className }: HeaderProps) {
     <header
       ref={setHeader}
       className={clsx(
-        "[--h-nav:theme(height.12)] pt-(--h-nav)",
-        "[--from-header-a:theme(color.blue.950)] [--from-header-b:theme(color.gray.50)]",
-        "[--from-header:var(--from-header-a)]",
-        "bg-gradient-to-b from-(--from-header) from-90% to-transparent",
+        "pt-(--h-nav)",
+        "bg-gradient-to-b from-neutral-900 from-70% to-transparent",
         className,
       )}
     >
@@ -68,13 +64,13 @@ export function Header({ className }: HeaderProps) {
         data-transparent={true}
         className={clsx(
           "group/nav transition-colors z-10 shadow fixed h-(--h-nav) top-0 inset-x-0",
-          "bg-white data-[transparent=true]:bg-transparent",
+          "bg-white/90 data-[transparent=true]:bg-white/10 backdrop-blur",
         )}
       >
         <MainMenu />
       </nav>
-      <section id="hero">
-        <div className="h-[500px]"/>
+      <section id="hero" className="max-w-screen-2xl mx-auto px-6">
+        <Hero/>
       </section>
     </header>
   )

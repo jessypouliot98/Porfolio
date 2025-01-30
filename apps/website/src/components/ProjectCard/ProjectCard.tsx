@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import React, { useState } from "react";
 import Image from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
-import { GoLink, GoX } from "@repo/ui/src/components/icons";
+import { IconLink, IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
 import { Badge } from "@repo/ui/src/components/Badge/Badge";
 import Link from "next/link";
@@ -104,7 +104,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 href={`/projects/${id}`}
                 className="transition bg-black/30 hover:bg-black/40 text-xl text-white p-2"
               >
-                <GoLink/>
+                <IconLink/>
               </Link>
             </div>
             <button
@@ -112,7 +112,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
               className="absolute transition bg-black/30 hover:bg-black/40 text-xl text-white p-2 top-4 right-4"
               onClick={() => setIsOpen(false)}
             >
-              <GoX />
+              <IconX />
             </button>
             <div className="px-4 py-6 space-y-4">
               <motion.ul

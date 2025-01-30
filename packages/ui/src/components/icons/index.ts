@@ -1,3 +1,7 @@
-// https://react-icons.github.io/react-icons/icons/go/
+// https://react-icons.github.io/react-icons/icons/bi/
 
-export { GoLink, GoX } from "react-icons/go";
+export {
+  BiLink as IconLink,
+  BiX as IconX,
+  BiLogoLinkedin as IconLogoLinkedin
+} from "react-icons/bi";

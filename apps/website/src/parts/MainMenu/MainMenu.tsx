@@ -48,7 +48,7 @@ export function MainMenu() {
   }, []);
 
   return (
-    <menu className="flex gap-4 px-6 py-2 w-full h-full max-w-screen-2xl mx-auto">
+    <menu className="flex px-6 w-full h-full max-w-screen-2xl mx-auto">
       {SECTIONS.map((section) => (
         <Item
           key={section}
@@ -74,13 +74,10 @@ function Item({ href, selected, label }: ItemProps) {
       aria-selected={selected}
     >
       <Button asChild className={clsx(
-        "transition-colors flex justify-center items-center h-full px-2 py-1",
-        selected
-          ? "bg-blue-500 hover:bg-blue-600 text-white"
-          : clsx(
-            "bg-transparent hover:bg-blue-500/70 text-black hover:text-white",
-            "group-data-[transparent=true]/nav:text-white"
-          )
+        "transition-colors flex justify-center items-center h-full px-3 pb-1 pt-1.5 border-b-4",
+        "text-black group-data-[transparent=true]/nav:text-white",
+        "bg-transparent hover:bg-gray-500/10",
+        "border-transparent group-aria-selected/item:border-blue-500",
       )}>
         <Link
           href={href}

@@ -29,7 +29,7 @@ export function Modal({ portalNode, classNames, children, isOpen, onRequestClose
         <motion.div
           ref={overlayRef}
           className={clsx(
-            "fixed inset-0 bg-black/50 backdrop-blur-xs grid place-items-center overflow-auto",
+            "fixed z-50 inset-0 bg-black/50 backdrop-blur-xs grid place-items-center overflow-auto",
             classNames?.overlay
           )}
           data-is="modal"
@@ -56,6 +56,10 @@ export function Modal({ portalNode, classNames, children, isOpen, onRequestClose
       )}
     </AnimatePresence>
   );
+
+  if (typeof window === "undefined") {
+    return render;
+  }
 
   return createPortal(render, portalNode ?? document.body);
 }

@@ -1,12 +1,12 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
-import { tw } from "../../utils/tailwind.js";
-import { PartContact } from "./parts/PartContact.js";
-import { PartExperience } from "./parts/PartExperience.js";
-import { PartTechnologies } from "./parts/PartTechnologies.js";
-import { PartEducation } from "./parts/PartEducation.js";
-import { PartQualities } from "./parts/PartQualities.js";
-import { PartOther } from "./parts/PartOther.js";
-import { CvTranslation } from "../../translations/types.js";
+import { tw } from "../../utils/tailwind";
+import { PartContact } from "./parts/PartContact";
+import { PartExperience } from "./parts/PartExperience";
+import { PartTechnologies } from "./parts/PartTechnologies";
+import { PartEducation } from "./parts/PartEducation";
+import { PartQualities } from "./parts/PartQualities";
+import { PartOther } from "./parts/PartOther";
+import { CvTranslation } from "../../translations/types";
 
 export type CvPageProps = {
   t: CvTranslation;

@@ -15,7 +15,7 @@ export function useRect(el: React.RefObject<HTMLElement | null>) {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [el]);
 
   return rect;
 }

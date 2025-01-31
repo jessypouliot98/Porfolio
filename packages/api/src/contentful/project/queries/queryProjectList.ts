@@ -5,7 +5,9 @@ export async function queryProjectList(client: Client) {
   const resp = await client.withoutUnresolvableLinks.getEntries<ProjectSkeleton>({
     locale: "en-CA",
     content_type: "field-project",
-    order: ["-sys.createdAt"],
+    order: [
+      "fields.level",
+    ],
   });
   return resp;
 }

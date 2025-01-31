@@ -22,7 +22,7 @@ export function Hero() {
           I’m constantly eager to learn and dive into new technologies, frameworks, and programming languages. Right
           now, I’m exploring <a className="underline text-orange-500"
                                 href="https://github.com/jessypouliot98?tab=repositories&q=&type=&language=zig&sort="
-                                target="_blank">Zig</a> and sharpening my skills.
+                                target="_blank" rel="noreferrer noopener">Zig</a> and sharpening my skills.
         </p>
       </div>
     </div>

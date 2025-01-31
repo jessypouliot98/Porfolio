@@ -3,12 +3,11 @@
 import { Card } from "@repo/ui/src/components/Card/Card"
 import { motion } from "motion/react";
 import React, { useState } from "react";
-import Image from "next/image"
+import Image, { ImageProps } from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
-import { IconLink, IconX } from "@repo/ui/src/components/icons";
+import { IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
 import { Badge } from "@repo/ui/src/components/Badge/Badge";
-import Link from "next/link";
 
 export type ProjectCardProps = {
   id: string;
@@ -17,9 +16,11 @@ export type ProjectCardProps = {
   thumbnail: string;
   technologies: string[]
   Content: React.ReactNode;
+  description: string;
+  thumbnailLoading?: ImageProps["loading"];
 }
 
-export function ProjectCard({ id, className, title, thumbnail, technologies, Content }: ProjectCardProps) {
+export function ProjectCard({ id, className, title, thumbnail, technologies, Content, description, thumbnailLoading }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,6 +34,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
           asChild
           id={id}
           className="block relative text-left size-full !bg-black"
+          aria-description={description}
         >
           <motion.button
             type="button"
@@ -51,7 +53,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 }}
                 src={thumbnail}
                 alt={`${title} thumbnail`}
-                loading="eager"
+                loading={thumbnailLoading}
                 fill
               />
             </motion.div>
@@ -95,18 +97,10 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 className="object-contain"
                 src={thumbnail}
                 alt={`${title} thumbnail`}
-                loading="lazy"
+                loading={thumbnailLoading}
                 fill
               />
             </motion.div>
-            <div className="absolute top-4 left-4 flex gap-4">
-              <Link
-                href={`/projects/${id}`}
-                className="transition bg-black/30 hover:bg-black/40 text-xl text-white p-2"
-              >
-                <IconLink/>
-              </Link>
-            </div>
             <button
               type="button"
               className="absolute transition bg-black/30 hover:bg-black/40 text-xl text-white p-2 top-4 right-4"
@@ -116,7 +110,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
             </button>
             <div className="px-4 py-6 space-y-4">
               <motion.ul
-                className="w-full overflow-hidden flex gap-1"
+                className="flex flex-wrap gap-1"
                 layoutId={`${id}-techs`}
               >
                 {technologies.map((tech) => (

@@ -3,5 +3,8 @@
 export {
   BiLink as IconLink,
   BiX as IconX,
-  BiLogoLinkedin as IconLogoLinkedin
+  BiLogoLinkedin as IconLogoLinkedin,
+  BiLogoGmail as IconLogoGmail,
+  BiLogoGithub as IconLogoGithub,
+  BiQuestionMark as IconQuestionMark,
 } from "react-icons/bi";

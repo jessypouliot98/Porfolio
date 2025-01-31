@@ -8,9 +8,10 @@ import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
 
 export type HeaderProps = {
   className?: string;
+  backgroundContent: React.ReactNode;
 };
 
-export function Header({ className }: HeaderProps) {
+export function Header({ className, backgroundContent }: HeaderProps) {
   const [header, setHeader] = useState<HTMLElement | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -19,12 +20,6 @@ export function Header({ className }: HeaderProps) {
     const abortController = new AbortController();
 
     let isTransparent = navRef.current?.getAttribute("data-transparent") !== "false";
-    let rect = header.getBoundingClientRect();
-    const observer = new ResizeObserver(() => {
-      // TODO - Rate limit
-      rect = header.getBoundingClientRect();
-    });
-    observer.observe(header, {});
 
     const update = () => {
       const headerBottom = header.offsetTop + header.offsetHeight;
@@ -45,21 +40,21 @@ export function Header({ className }: HeaderProps) {
     window.addEventListener("scroll", update, { signal: abortController.signal });
     update();
 
-    return () => {
-      observer.disconnect();
-      abortController.abort();
-    }
+    return () => abortController.abort();
   }, [header]);
 
   return (
     <header
       ref={setHeader}
       className={clsx(
-        "pt-(--h-nav)",
+        "relative pt-(--h-nav)",
         "bg-gradient-to-b from-neutral-900 from-70% to-transparent",
         className,
       )}
     >
+      <div className="absolute inset-0 overflow-hidden">
+        {backgroundContent}
+      </div>
       <nav
         ref={navRef}
         data-transparent={true}
@@ -70,7 +65,7 @@ export function Header({ className }: HeaderProps) {
       >
         <MainMenu />
       </nav>
-      <section id="hero" className="max-w-screen-2xl mx-auto px-6">
+      <section id="hero" className="relative max-w-screen-2xl mx-auto px-6">
         <Hero/>
       </section>
     </header>

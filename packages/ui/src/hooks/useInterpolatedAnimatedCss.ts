@@ -34,6 +34,7 @@ export function useInterpolatedAnimatedCss<TEl extends HTMLElement>({
       return propertyValue === "" ? fallback : propertyValue;
     })
     setColors(colors);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Mount only
   }, []);
 
   return elementRef;

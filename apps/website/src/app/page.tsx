@@ -1,5 +1,5 @@
 import { ProjectCard } from "../components/ProjectCard/ProjectCard";
-import React from "react";
+import React, { cache, Suspense } from "react";
 import { queryProjectList } from "@repo/api/src/contentful/project/queries/queryProjectList";
 import { contentfulClient, contentfulImageProps } from "../utils/cms";
 import { Header } from "../parts/Header/Header";
@@ -8,15 +8,33 @@ import { queryTechnologyList } from "@repo/api/src/contentful/technology/queries
 import Image from "next/image";
 import { Card } from "@repo/ui/src/components/Card/Card";
 import { clsx } from "clsx";
+import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
+import { assertDefined } from "@repo/util/src/assertDefined";
+import { HeroSkillSpinner } from "../parts/HeroSkillSpinner/HeroSkillSpinner";
+
+const getProjectList = cache(() => queryProjectList(contentfulClient));
+const getTechnologyList = cache(() => queryTechnologyList(contentfulClient));
 
 export default async function Home() {
-  const { items: projects } = await queryProjectList(contentfulClient);
-  const { items: technologies } = await queryTechnologyList(contentfulClient);
+  const [
+    { items: projects },
+    { items: technologies }
+  ] = await Promise.all([
+    getProjectList(),
+    getTechnologyList(),
+  ]);
 
   return (
     <div className="[--overlap:theme(spacing.96)] min-h-screen">
       <Header
         className="pb-(--overlap)"
+        backgroundContent={(
+          <div className="size-full max-w-screen-2xl mx-auto relative">
+            <Suspense fallback={null}>
+              <HeroSkillSpinner/>
+            </Suspense>
+          </div>
+        )}
       />
       <main
         id="main"
@@ -25,28 +43,40 @@ export default async function Home() {
         <section id="projects" className="p-6 space-y-6">
           <h2 className="font-pixel text-4xl text-white">Projects</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {projects.map((project) => (
-              <li key={project.sys.id}>
-                <ProjectCard
-                  id={project.sys.id}
-                  title={project.fields.title}
-                  thumbnail={contentfulImageProps(project.fields.thumbnail!).src}
-                  technologies={project.fields.technologies.map((tech) => tech!.fields.name)}
-                  Content={(
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque aut culpa eos esse et fugit
-                      iusto
-                      neque rem tenetur. Debitis eius eum explicabo impedit neque obcaecati perferendis quibusdam?
-                      Laudantium.</p>
-                  )}
-                />
-              </li>
-            ))}
+            {projects.map((project, i) => {
+              const thumbnail = project.fields.thumbnail;
+              assertDefined(thumbnail);
+              return (
+                <li key={project.sys.id}>
+                  <ProjectCard
+                    id={project.sys.id}
+                    title={project.fields.title}
+                    thumbnail={contentfulImageProps(thumbnail).src}
+                    thumbnailLoading={i < 4 ? "eager" : "lazy"}
+                    technologies={project.fields.technologies.map((tech) => {
+                      assertDefined(tech);
+                      return tech.fields.name;
+                    })}
+                    Content={project.fields.content ? (
+                      <RichTextRender
+                        richTextDocument={project.fields.content}
+                      />
+                    ) : (
+                      <p>{project.fields.description}</p>
+                    )}
+                    description={project.fields.description}
+                  />
+                </li>
+              )
+            })}
           </ul>
         </section>
         <section id="technologies" className="p-6 space-y-3">
           <h2 className="font-pixel text-4xl text-blue-500">Technologies</h2>
           <ul className="flex flex-wrap justify-center gap-6">
             {technologies.map((technology) => {
+              const image = technology.fields.image;
+              assertDefined(image);
               const level = technology.fields.level ?? 40;
               const indexLevel = Math.floor(level / 10);
               const size = [48,36,28][indexLevel] ?? 28;
@@ -67,9 +97,10 @@ export default async function Home() {
                   >
                     <div className="aspect-square grid place-items-center">
                       <Image
-                        {...contentfulImageProps(technology.fields.image!)}
+                        {...contentfulImageProps(image)}
                         width={size}
                         height={size}
+                        loading="lazy"
                       />
                     </div>
                     <div>{technology.fields.name}</div>

@@ -1,6 +1,6 @@
 import { View, Text } from "@react-pdf/renderer";
-import { tw } from "../utils/tailwind.js";
-import { BulletList } from "./BulletList.js";
+import { tw } from "../utils/tailwind";
+import { BulletList } from "./BulletList";
 
 export type EducationCardProps = {
   school: string;

@@ -1,10 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "envMode": "strict",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".env", ".next/**", "!.next/cache/**"]
     },
     "dev": {
       "dependsOn": ["^build"],

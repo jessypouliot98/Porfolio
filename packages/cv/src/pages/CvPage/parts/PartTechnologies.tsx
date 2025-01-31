@@ -1,8 +1,8 @@
-import { CvTranslation } from "../../../translations/types.js";
-import { SectionTitle } from "../../../components/SectionTitle.js";
+import { CvTranslation } from "../../../translations/types";
+import { SectionTitle } from "../../../components/SectionTitle";
 import { Text, View } from "@react-pdf/renderer";
-import { tw } from "../../../utils/tailwind.js";
-import { Section } from "../../../components/Section.js";
+import { tw } from "../../../utils/tailwind";
+import { Section } from "../../../components/Section";
 
 export function PartTechnologies({ t }: { t: CvTranslation }) {
   return (

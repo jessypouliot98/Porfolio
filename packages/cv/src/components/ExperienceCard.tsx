@@ -1,5 +1,5 @@
 import { View, Text } from "@react-pdf/renderer";
-import { tw } from "../utils/tailwind.js";
+import { tw } from "../utils/tailwind";
 
 export type ExperienceCardProps = {
   job: string;

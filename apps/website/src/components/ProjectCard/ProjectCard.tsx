@@ -119,12 +119,12 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                   </li>
                 ))}
               </motion.ul>
-              <motion.h3
+              <motion.h2
                 className="font-pixel text-5xl text-blue-500"
                 layoutId={`${id}-title`}
               >
                 {title}
-              </motion.h3>
+              </motion.h2>
               <div>
                 {Content}
               </div>

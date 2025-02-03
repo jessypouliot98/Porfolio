@@ -1,7 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Asset } from "contentful";
 import { assertDefined } from "@repo/util/src/assertDefined";
-import { assert } from "@repo/util/src/assert";
 
 export type VideoContentProps = {
   className?: string;
@@ -19,7 +18,7 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
 
     if (focused) {
       video.currentTime = 0;
-      video.play();
+      void video.play();
     } else {
       video.pause();
     }

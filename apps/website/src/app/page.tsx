@@ -8,7 +8,6 @@ import { queryTechnologyList } from "@repo/api/src/contentful/technology/queries
 import Image from "next/image";
 import { Card } from "@repo/ui/src/components/Card/Card";
 import { clsx } from "clsx";
-import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { HeroSkillSpinner } from "../parts/HeroSkillSpinner/HeroSkillSpinner";
 

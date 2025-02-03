@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export function useRect(el: React.RefObject<HTMLElement | null>) {
   const [rect, setRect] = useState(() => {
@@ -9,15 +9,21 @@ export function useRect(el: React.RefObject<HTMLElement | null>) {
     const currentEl = el.current;
     if (!currentEl) return;
 
-    setRect(currentEl.getBoundingClientRect());
     const observer = new ResizeObserver(() => {
       // TODO - rate limit with throttle
       setRect(currentEl.getBoundingClientRect());
     });
     observer.observe(currentEl);
+    setRect(currentEl.getBoundingClientRect());
 
     return () => observer.disconnect();
   }, [el]);
 
-  return rect;
+  const update = useCallback(() => {
+    const currentEl = el.current;
+    if (!currentEl) return;
+    setRect(currentEl.getBoundingClientRect());
+  }, []);
+
+  return [rect, update] as const;
 }

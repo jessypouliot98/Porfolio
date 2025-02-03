@@ -16,7 +16,7 @@ const DRAG_BUFFER = 50;
 
 export function Carousel<TData>({ className, data, keyExtractor, renderItem }: CarouselProps<TData>) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const rootRect = useRect(rootRef);
+  const [rootRect, updateRootRect] = useRect(rootRef);
   const [currentIndex, setCurrentIndex] = useState(0);
   const dragX = useMotionValue(0);
 
@@ -67,7 +67,7 @@ export function Carousel<TData>({ className, data, keyExtractor, renderItem }: C
           return (
             <div
               key={keyExtractor(item)}
-              className="min-w-(--width) w-(--width) h-(--height)"
+              className="w-full"
             >
               {renderItem({ item, index: i, focused: i === currentIndex })}
             </div>

@@ -7,7 +7,7 @@ export type ModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   classNames?: Partial<Record<
-    "overlay" | "content",
+    "overlay" | "content" | "container",
     string
   >>;
   portalNode?: Element | DocumentFragment
@@ -15,6 +15,7 @@ export type ModalProps = {
 
 export function Modal({ portalNode, classNames, children, isOpen, onRequestClose }: React.PropsWithChildren<ModalProps>) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const pointerDownElRef = useRef<EventTarget>(null);
 
   useEffect(() => {
     const div = overlayRef.current;
@@ -36,14 +37,23 @@ export function Modal({ portalNode, classNames, children, isOpen, onRequestClose
           tabIndex={0}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => onRequestClose()}
+          onPointerDown={(ev) => {
+            pointerDownElRef.current = ev.target;
+          }}
+          onClick={(ev) => {
+            if (ev.currentTarget !== pointerDownElRef.current) {
+              // Prevents close when dragging click inside-out
+              return;
+            }
+            onRequestClose()
+          }}
           onKeyDown={(ev) => {
             if (ev.key === "Escape") {
               onRequestClose();
             }
           }}
         >
-          <div className="p-4 max-w-screen">
+          <div className={clsx("p-4", classNames?.container)}>
             <div
               className={clsx(
                 classNames?.content,

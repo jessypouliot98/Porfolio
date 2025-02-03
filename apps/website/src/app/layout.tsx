@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend, Jersey_15 } from "next/font/google";
-import "./globals.css";
 import "@repo/ui/dist/styles.css"
+import "./globals.css";
 import React from "react";
 
 const lexendSans = Lexend({

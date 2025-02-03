@@ -15,8 +15,6 @@ export type CarouselProps<TData> = {
 const DRAG_BUFFER = 50;
 
 export function Carousel<TData>({ className, data, keyExtractor, renderItem }: CarouselProps<TData>) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [rootRect, updateRootRect] = useRect(rootRef);
   const [currentIndex, setCurrentIndex] = useState(0);
   const dragX = useMotionValue(0);
 
@@ -32,18 +30,13 @@ export function Carousel<TData>({ className, data, keyExtractor, renderItem }: C
 
   return (
     <div
-      ref={rootRef}
-      style={{
-        "--width": `${rootRect?.width ?? 0}px`,
-        "--height": `${rootRect?.height ?? 0}px`,
-      } as object}
       className={clsx(
         "relative overflow-hidden",
         className,
       )}
     >
       <motion.div
-        className="flex items-center"
+        className="h-full flex cursor-grab items-center active:cursor-grabbing"
         drag="x"
         dragConstraints={{
           left: 0,
@@ -67,7 +60,7 @@ export function Carousel<TData>({ className, data, keyExtractor, renderItem }: C
           return (
             <div
               key={keyExtractor(item)}
-              className="w-full"
+              className="size-full shrink-0"
             >
               {renderItem({ item, index: i, focused: i === currentIndex })}
             </div>

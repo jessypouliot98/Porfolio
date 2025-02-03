@@ -9,11 +9,12 @@ export function useRect(el: React.RefObject<HTMLElement | null>) {
     const currentEl = el.current;
     if (!currentEl) return;
 
+    setRect(currentEl.getBoundingClientRect());
     const observer = new ResizeObserver(() => {
-      // TODO - rate limit
+      // TODO - rate limit with throttle
       setRect(currentEl.getBoundingClientRect());
     });
-    setRect(currentEl.getBoundingClientRect());
+    observer.observe(currentEl);
 
     return () => observer.disconnect();
   }, [el]);

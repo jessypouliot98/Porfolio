@@ -43,15 +43,16 @@ export function Modal({ portalNode, classNames, children, isOpen, onRequestClose
             }
           }}
         >
-          <motion.div
-            className={clsx(
-              "m-4",
-              classNames?.content,
-            )}
-            onClick={(ev) => ev.stopPropagation()}
-          >
-            {children}
-          </motion.div>
+          <div className="p-4 max-w-screen">
+            <div
+              className={clsx(
+                classNames?.content,
+              )}
+              onClick={(ev) => ev.stopPropagation()}
+            >
+              {children}
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

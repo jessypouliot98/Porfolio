@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useMotionValue } from "motion/react";
-import { JSX, useRef, useState } from "react";
-import { useRect } from "../../hooks/useRect";
+import { JSX, useState } from "react";
 import { clsx } from "clsx";
 
 export type CarouselProps<TData> = {

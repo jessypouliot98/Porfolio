@@ -23,7 +23,7 @@ export function useRect(el: React.RefObject<HTMLElement | null>) {
     const currentEl = el.current;
     if (!currentEl) return;
     setRect(currentEl.getBoundingClientRect());
-  }, []);
+  }, [el]);
 
   return [rect, update] as const;
 }

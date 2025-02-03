@@ -9,7 +9,7 @@ export type CarouselProps<TData> = {
   className?: string;
   data: TData[];
   keyExtractor: (key: TData) => string;
-  renderItem: (arg: { item: TData }) => JSX.Element;
+  renderItem: (arg: { item: TData; index: number; focused: boolean }) => JSX.Element;
 }
 
 const DRAG_BUFFER = 50;
@@ -63,13 +63,13 @@ export function Carousel<TData>({ className, data, keyExtractor, renderItem }: C
           damping: 50,
         }}
       >
-        {data.map((item) => {
+        {data.map((item, i) => {
           return (
             <div
               key={keyExtractor(item)}
               className="min-w-(--width) w-(--width) h-(--height)"
             >
-              {renderItem({ item })}
+              {renderItem({ item, index: i, focused: i === currentIndex })}
             </div>
           )
         })}

@@ -12,8 +12,9 @@ import { ProjectEntry } from "@repo/api/src/contentful/project/model";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { contentfulImageProps } from "../../utils/cms";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
-import { Button } from "@repo/ui/src/components/Button/Button";
 import { Carousel } from "@repo/ui/src/components/Carousel/Carousel";
+import { MediaContent } from "@repo/ui/src/components/contentful/MediaContent/MediaContent";
+import { ButtonLinkContentful } from "@repo/ui/src/components/contentful/ButtonLinkContentful/ButtonLinkContentful";
 
 export type ProjectCardProps = {
   className?: string;
@@ -53,11 +54,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
     assertDefined(link);
     return (
       <li key={link.sys.id}>
-        <Button asChild>
-          <a href={link.fields.link} target="_blank" rel="noopener noreferrer">
-            {link.fields.label}
-          </a>
-        </Button>
+        <ButtonLinkContentful link={link} />
       </li>
     )
   })
@@ -132,37 +129,17 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 className="size-full"
                 data={mediaList}
                 keyExtractor={(media) => media.sys.id}
-                renderItem={({ item: media }) => {
-                  const file = media.fields.file;
-                  assertDefined(file);
-
-                  if (file.contentType.startsWith("video/")) {
-                    return (
-                      <video
-                        key={media.sys.id}
-                        className="size-full"
-                        src={"https://" + file.url}
-                        aria-description={media.fields.description}
-                        muted
-                        autoPlay={false}
-                        controls
-                      />
-                    )
-                  }
-                  if (file.contentType.startsWith("image/")) {
-                    return (
-                      <Image
-                        key={media.sys.id}
-                        className="object-contain pointer-events-none"
-                        src={"https://" + file.url}
-                        alt={media.fields.description ?? file.fileName}
-                        loading="lazy"
-                        fill
-                      />
-                    )
-                  }
-                  throw new Error(`${file.fileName} of type ${file.contentType} is not supported`);
-                }}
+                renderItem={({ item: media, focused }) => (
+                  <MediaContent
+                    className="size-full"
+                    classNames={{
+                      image: "object-contain pointer-events-none",
+                      video: ""
+                    }}
+                    media={media}
+                    focused={focused}
+                  />
+                )}
               />
             </motion.div>
             <button
@@ -194,7 +171,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                   <p>{description}</p>
                 )}
               </div>
-              <ul>
+              <ul className="flex flex-wrap gap-2">
                 {renderLinkItems}
               </ul>
             </div>

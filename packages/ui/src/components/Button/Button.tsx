@@ -1,5 +1,13 @@
 import { ComponentPropsWithRef } from "react";
 import { Slot, SlotProps } from "@radix-ui/react-slot";
+import { clsx } from "clsx";
+
+const variants = {
+  none: "",
+  primary: "text-white bg-blue-500 hover:bg-blue-600 disabled:opacity-40"
+} satisfies Record<string, string>;
+
+type Variant = keyof typeof variants;
 
 export type ButtonProps<TAsChild extends boolean> =
   & (TAsChild extends false
@@ -8,18 +16,30 @@ export type ButtonProps<TAsChild extends boolean> =
   & {
     asChild?: TAsChild;
     disabled?: boolean;
+    variant?: Variant;
+    inline?: boolean;
   }
 
 export function Button<TAsChild extends boolean = false>({
   asChild,
   disabled,
   children,
+  className,
+  variant = "primary",
+  inline = false,
   ...buttonProps
 }: ButtonProps<TAsChild>) {
   const Comp = asChild ? Slot : "button";
   return (
     <Comp
       {...buttonProps}
+      className={clsx(
+        inline ? "inline-flex" : "flex",
+        "transition-colors",
+        "items-center px-2 py-2",
+        variants[variant],
+        className,
+      )}
       aria-disabled={disabled}
     >
       {children}

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Button } from "@repo/ui/src/components/Button/Button";
 import { clsx } from "clsx";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
@@ -10,6 +9,12 @@ const SECTIONS = [
   "projects",
   "technologies"
 ] as const;
+
+const LABELS = {
+  hero: "Presentation",
+  projects: "Projects",
+  technologies: "Technologies",
+} satisfies Record<typeof SECTIONS[number], string>
 
 export function MainMenu() {
   const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
@@ -53,7 +58,7 @@ export function MainMenu() {
         <Item
           key={section}
           href={`/#${section}`}
-          label={section}
+          label={LABELS[section]}
           selected={currentSection === section}
         />
       ))}
@@ -73,18 +78,17 @@ function Item({ href, selected, label }: ItemProps) {
       className="group/item"
       aria-selected={selected}
     >
-      <Button asChild className={clsx(
-        "transition-colors flex justify-center items-center h-full px-3 pb-1 pt-1.5 border-b-4",
-        "text-black group-data-[transparent=true]/nav:text-white",
-        "bg-transparent hover:bg-gray-500/10",
-        "border-transparent group-aria-selected/item:border-blue-500",
-      )}>
-        <Link
-          href={href}
-        >
-          {label}
-        </Link>
-      </Button>
+      <Link
+        className={clsx(
+          "transition-colors flex justify-center items-center h-full px-3 pb-1 pt-1.5 border-b-4",
+          "text-black group-data-[transparent=true]/nav:text-white",
+          "bg-transparent hover:bg-gray-500/10",
+          "border-transparent group-aria-selected/item:border-blue-500",
+        )}
+        href={href}
+      >
+        {label}
+      </Link>
     </li>
   )
 }

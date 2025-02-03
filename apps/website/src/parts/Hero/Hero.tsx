@@ -14,15 +14,14 @@ export function Hero() {
       </div>
       <div className="space-y-2 max-w-2xl">
         <p>
-          I’m passionate about writing code that pushes boundaries.
-          Whether it’s crafting high-performance websites and apps or building impressive user experiences that make you
-          go <span className="font-pixel text-orange-500 inline-block scale-150 px-1.5">WOW!</span>
+          I’m passionate about building robust, scalable applications that push the limits of what’s possible. From designing efficient backend systems to developing seamless, high-performance user interfaces, I enjoy tackling complex challenges across the stack.
         </p>
         <p>
-          I’m constantly eager to learn and dive into new technologies, frameworks, and programming languages. Right
-          now, I’m exploring <a className="underline text-orange-500"
-                                href="https://github.com/jessypouliot98?tab=repositories&q=&type=&language=zig&sort="
-                                target="_blank" rel="noreferrer noopener">Zig</a> and sharpening my skills.
+          I’m always eager to learn and experiment with new technologies, frameworks, and programming languages. Right
+          now, I’m diving into <a className="underline text-orange-500"
+                                  href="https://github.com/jessypouliot98?tab=repositories&q=&type=&language=zig&sort="
+                                  target="_blank" rel="noreferrer noopener">Zig</a> and refining my skills to stay at
+          the forefront of modern development.
         </p>
       </div>
     </div>

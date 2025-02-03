@@ -42,7 +42,7 @@ export default async function Home() {
       >
         <section id="projects" className="p-6 space-y-6">
           <h2 className="font-pixel text-4xl text-white">Projects</h2>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {projects.map((project, i) => {
               return (
                 <li key={project.sys.id}>

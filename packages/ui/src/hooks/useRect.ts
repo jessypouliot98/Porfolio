@@ -13,6 +13,7 @@ export function useRect(el: React.RefObject<HTMLElement | null>) {
       // TODO - rate limit
       setRect(currentEl.getBoundingClientRect());
     });
+    setRect(currentEl.getBoundingClientRect());
 
     return () => observer.disconnect();
   }, [el]);

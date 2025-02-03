@@ -2,7 +2,7 @@
 
 import { Card } from "@repo/ui/src/components/Card/Card"
 import { motion } from "motion/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image, { ImageProps } from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
 import { IconX } from "@repo/ui/src/components/icons";
@@ -13,7 +13,7 @@ import { assertDefined } from "@repo/util/src/assertDefined";
 import { contentfulImageProps } from "../../utils/cms";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
 import { Button } from "@repo/ui/src/components/Button/Button";
-import assert from "node:assert";
+import { Carousel } from "@repo/ui/src/components/Carousel/Carousel";
 
 export type ProjectCardProps = {
   className?: string;
@@ -27,6 +27,18 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
   const { description, title, thumbnail, technologies } = project.fields;
   assertDefined(thumbnail);
 
+  const mediaList = useMemo(() => {
+    if (!project.fields.mediaList) {
+      return [thumbnail];
+    }
+    return [
+      thumbnail,
+      ...project.fields.mediaList.map((media) => {
+        assertDefined(media);
+        return media;
+      }),
+    ];
+  }, [thumbnail, project.fields.mediaList]);
   const thumbnailSrc = contentfulImageProps(thumbnail).src;
   const thumbnailAlt = `${title} thumbnail`;
   const renderTechListItems = technologies.map((tech) => {
@@ -49,8 +61,6 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
       </li>
     )
   })
-
-  console.log(project)
 
   return (
     <>
@@ -115,15 +125,44 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
         <Card asChild className="relative">
           <motion.div layoutId={`${id}-container`}>
             <motion.div
-              className="relative aspect-[21/9] bg-gray-200"
+              className="relative aspect-video bg-gray-200"
               layoutId={`${id}-image`}
             >
-              <Image
-                className="object-contain"
-                src={thumbnailSrc}
-                alt={thumbnailAlt}
-                loading={thumbnailLoading}
-                fill
+              <Carousel
+                className="size-full"
+                data={mediaList}
+                keyExtractor={(media) => media.sys.id}
+                renderItem={({ item: media }) => {
+                  const file = media.fields.file;
+                  assertDefined(file);
+
+                  if (file.contentType.startsWith("video/")) {
+                    return (
+                      <video
+                        key={media.sys.id}
+                        className="size-full"
+                        src={"https://" + file.url}
+                        aria-description={media.fields.description}
+                        muted
+                        autoPlay={false}
+                        controls
+                      />
+                    )
+                  }
+                  if (file.contentType.startsWith("image/")) {
+                    return (
+                      <Image
+                        key={media.sys.id}
+                        className="object-contain pointer-events-none"
+                        src={"https://" + file.url}
+                        alt={media.fields.description ?? file.fileName}
+                        loading="lazy"
+                        fill
+                      />
+                    )
+                  }
+                  throw new Error(`${file.fileName} of type ${file.contentType} is not supported`);
+                }}
               />
             </motion.div>
             <button
@@ -158,37 +197,6 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
               <ul>
                 {renderLinkItems}
               </ul>
-              <div>
-                {project.fields.mediaList?.map((media) => {
-                  assertDefined(media);
-                  const file = media.fields.file;
-                  assertDefined(file);
-                  if (file.contentType.startsWith("video/")) {
-                    return (
-                      <video
-                        key={media.sys.id}
-                        src={"https://" + file.url}
-                        aria-description={media.fields.description}
-                        muted
-                        autoPlay={false}
-                        controls
-                      />
-                    )
-                  }
-                  if (file.contentType.startsWith("image/")) {
-                    return (
-                      <Image
-                        key={media.sys.id}
-                        src={"https://" + file.url}
-                        alt={media.fields.description ?? file.fileName}
-                        loading="lazy"
-                        fill
-                      />
-                    )
-                  }
-                  throw new Error(`${file.fileName} of type ${file.contentType} is not supported`);
-                })}
-              </div>
             </div>
           </motion.div>
         </Card>

@@ -45,7 +45,7 @@ export function Modal({ portalNode, classNames, children, isOpen, onRequestClose
         >
           <motion.div
             className={clsx(
-              "p-4",
+              "m-4",
               classNames?.content,
             )}
             onClick={(ev) => ev.stopPropagation()}

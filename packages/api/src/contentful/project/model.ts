@@ -10,7 +10,7 @@ export type Project = {
   description: EntryFieldTypes.Text;
   technologies: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TechnologySkeleton>>;
   thumbnail: EntryFieldTypes.AssetLink;
-  mediaList: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+  mediaList?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
   content?: EntryFieldTypes.RichText;
   links?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<LinkSkeleton>>;
 }

@@ -7,9 +7,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo dev"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "fix": "turbo fix",
+    "code-quality": "turbo code-quality"
   },
   "devDependencies": {
+    "@types/node": "~22.10.10",
     "turbo": "^2.3.4"
   }
 }

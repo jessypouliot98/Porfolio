@@ -1,0 +1,33 @@
+{
+  "name": "@repo/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+    "dev": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+    "check:types": "tsc --noEmit",
+    "check:lint": "eslint --max-warnings 0",
+    "fix:lint": "eslint --max-warnings 0 --fix"
+  },
+  "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.0.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "clsx": "^2",
+    "motion": "^12",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-icons": "^5.4.0"
+  },
+  "devDependencies": {
+    "@repo/config-eslint": "*",
+    "@repo/config-tailwind": "*",
+    "@repo/config-typescript": "*",
+    "@tailwindcss/cli": "^4",
+    "@types/react": "^19",
+    "autoprefixer": "~10.4",
+    "postcss": "~8.5",
+    "tailwindcss": "^4",
+    "typescript": "*"
+  }
+}

@@ -1,9 +1,9 @@
 import ReactPDF from "@react-pdf/renderer";
 import { NextRequest } from "next/server";
-import { CvPage } from "@repo/cv/pages/CvPage/CvPage";
-import en from "@repo/cv/translations/en.json"
-import fr from "@repo/cv/translations/fr.json"
-import { registerFonts } from "@repo/cv/utils/registerFonts";
+import { CvPage } from "@repo/cv/src/pages/CvPage/CvPage";
+import en from "@repo/cv/src/translations/en.json"
+import fr from "@repo/cv/src/translations/fr.json"
+import { registerFonts } from "@repo/cv/src/utils/registerFonts";
 import path from "path";
 
 type Params = {
@@ -24,7 +24,7 @@ export async function GET(
   }
 
   const pdfStream = await ReactPDF.renderToStream(<CvPage t={lang === "fr" ? fr : en} />);
-  return new Response(pdfStream as unknown as ReadableStream<any>, {
+  return new Response(pdfStream as unknown as ReadableStream<unknown>, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": contentDisposition ?? "",

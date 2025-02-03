@@ -1,9 +1,37 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "envMode": "strict",
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".env", ".next/**", "!.next/cache/**"]
+    },
     "dev": {
+      "dependsOn": ["^build"],
       "persistent": true,
       "cache": false
+    },
+    "check:lint": {
+      "dependsOn": ["^check:lint"]
+    },
+    "check:style": {
+      "dependsOn": ["^check:style"]
+    },
+    "check:types": {
+      "dependsOn": ["^check:types"]
+    },
+    "code-quality": {
+      "dependsOn": ["check:lint", "check:style", "check:types"]
+    },
+    "fix:lint": {
+      "dependsOn": ["^fix:lint"]
+    },
+    "fix:style": {
+      "dependsOn": ["^fix:style"]
+    },
+    "fix": {
+      "dependsOn": ["fix:lint", "fix:style"]
     }
   }
 }

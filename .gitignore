@@ -12,6 +12,10 @@ npm-debug.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.template
 
 # turborepo
 .turbo
+
+# build
+dist

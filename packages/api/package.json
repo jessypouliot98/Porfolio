@@ -1,0 +1,19 @@
+{
+  "name": "@repo/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:types": "tsc --noEmit",
+    "check:lint": "eslint --max-warnings 0",
+    "fix:lint": "eslint --max-warnings 0 --fix"
+  },
+  "dependencies": {
+    "contentful": "^11.4.4"
+  },
+  "devDependencies": {
+    "@repo/config-eslint": "*",
+    "@repo/config-typescript": "*",
+    "typescript": "*"
+  }
+}

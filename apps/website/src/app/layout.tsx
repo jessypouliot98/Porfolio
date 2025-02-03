@@ -3,8 +3,6 @@ import { Lexend, Jersey_15 } from "next/font/google";
 import "./globals.css";
 import "@repo/ui/dist/styles.css"
 import React from "react";
-import { clsx } from "clsx";
-import { MainMenu } from "../parts/MainMenu/MainMenu";
 
 const lexendSans = Lexend({
   variable: "--font-sans",
@@ -28,17 +26,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
     <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
-    <nav
-      ref={navRef}
-      data-transparent={true}
-      className={clsx(
-        "group/nav transition-colors z-10 shadow fixed h-(--h-nav) top-0 inset-x-0",
-        "bg-white/90 data-[transparent=true]:bg-white/10 backdrop-blur",
-      )}
-    >
-      <MainMenu/>
-    </nav>
-    {children}
+      {children}
     </body>
     </html>
   );

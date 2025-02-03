@@ -83,7 +83,7 @@ function Item({ href, selected, label }: ItemProps) {
           "transition-colors flex justify-center items-center h-full px-3 pb-1 pt-1.5 border-b-4",
           "text-black group-data-[transparent=true]/nav:text-white",
           "bg-transparent hover:bg-gray-500/10",
-          "border-transparent group-aria-selected/item:border-blue-500",
+          "border-transparent group-aria-[current=page]/item:border-blue-500",
         )}
         href={href}
       >

@@ -7,4 +7,6 @@ export {
   BiLogoGmail as IconLogoGmail,
   BiLogoGithub as IconLogoGithub,
   BiQuestionMark as IconQuestionMark,
+  BiBriefcase as IconBriefcase,
+  BiLogoChrome as IconLogoChrome,
 } from "react-icons/bi";

@@ -44,27 +44,11 @@ export default async function Home() {
           <h2 className="font-pixel text-4xl text-white">Projects</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {projects.map((project, i) => {
-              const thumbnail = project.fields.thumbnail;
-              assertDefined(thumbnail);
               return (
                 <li key={project.sys.id}>
                   <ProjectCard
-                    id={project.sys.id}
-                    title={project.fields.title}
-                    thumbnail={contentfulImageProps(thumbnail).src}
+                    project={project}
                     thumbnailLoading={i < 4 ? "eager" : "lazy"}
-                    technologies={project.fields.technologies.map((tech) => {
-                      assertDefined(tech);
-                      return tech.fields.name;
-                    })}
-                    Content={project.fields.content ? (
-                      <RichTextRender
-                        richTextDocument={project.fields.content}
-                      />
-                    ) : (
-                      <p>{project.fields.description}</p>
-                    )}
-                    description={project.fields.description}
                   />
                 </li>
               )

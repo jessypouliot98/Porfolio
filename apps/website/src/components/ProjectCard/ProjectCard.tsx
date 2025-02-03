@@ -8,20 +8,49 @@ import { Modal } from "@repo/ui/src/components/Modal/Modal";
 import { IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
 import { Badge } from "@repo/ui/src/components/Badge/Badge";
+import { ProjectEntry } from "@repo/api/src/contentful/project/model";
+import { assertDefined } from "@repo/util/src/assertDefined";
+import { contentfulImageProps } from "../../utils/cms";
+import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
+import { Button } from "@repo/ui/src/components/Button/Button";
+import assert from "node:assert";
 
 export type ProjectCardProps = {
-  id: string;
   className?: string;
-  title: string;
-  thumbnail: string;
-  technologies: string[]
-  Content: React.ReactNode;
-  description: string;
+  project: ProjectEntry;
   thumbnailLoading?: ImageProps["loading"];
 }
 
-export function ProjectCard({ id, className, title, thumbnail, technologies, Content, description, thumbnailLoading }: ProjectCardProps) {
+export function ProjectCard({ className, project, thumbnailLoading }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const id = project.sys.id
+  const { description, title, thumbnail, technologies } = project.fields;
+  assertDefined(thumbnail);
+
+  const thumbnailSrc = contentfulImageProps(thumbnail).src;
+  const thumbnailAlt = `${title} thumbnail`;
+  const renderTechListItems = technologies.map((tech) => {
+    assertDefined(tech);
+    return (
+      <li key={tech.sys.id}>
+        <Badge>{tech.fields.name}</Badge>
+      </li>
+    )
+  });
+  const renderLinkItems = project.fields.links?.map((link) => {
+    assertDefined(link);
+    return (
+      <li key={link.sys.id}>
+        <Button asChild>
+          <a href={link.fields.link} target="_blank" rel="noopener noreferrer">
+            {link.fields.label}
+          </a>
+        </Button>
+      </li>
+    )
+  })
+
+  console.log(project)
 
   return (
     <>
@@ -51,8 +80,8 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                   maskMode: "alpha",
                   maskImage: "linear-gradient(to top, transparent 0%, rgba(255,255,255,1) 80%)",
                 }}
-                src={thumbnail}
-                alt={`${title} thumbnail`}
+                src={thumbnailSrc}
+                alt={thumbnailAlt}
                 loading={thumbnailLoading}
                 fill
               />
@@ -70,11 +99,7 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 className="w-full overflow-hidden flex gap-1"
                 layoutId={`${id}-techs`}
               >
-                {technologies.map((tech) => (
-                  <li key={tech}>
-                    <Badge>{tech}</Badge>
-                  </li>
-                ))}
+                {renderTechListItems}
               </motion.ul>
             </div>
           </motion.button>
@@ -95,8 +120,8 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
             >
               <Image
                 className="object-contain"
-                src={thumbnail}
-                alt={`${title} thumbnail`}
+                src={thumbnailSrc}
+                alt={thumbnailAlt}
                 loading={thumbnailLoading}
                 fill
               />
@@ -113,20 +138,56 @@ export function ProjectCard({ id, className, title, thumbnail, technologies, Con
                 className="flex flex-wrap gap-1"
                 layoutId={`${id}-techs`}
               >
-                {technologies.map((tech) => (
-                  <li key={tech}>
-                    <Badge>{tech}</Badge>
-                  </li>
-                ))}
+                {renderTechListItems}
               </motion.ul>
               <motion.h2
-                className="font-pixel text-5xl text-blue-500"
+                className="font-pixel text-6xl text-blue-500"
                 layoutId={`${id}-title`}
               >
                 {title}
               </motion.h2>
               <div>
-                {Content}
+                {project.fields.content ? (
+                  <RichTextRender
+                    richTextDocument={project.fields.content}
+                  />
+                ) : (
+                  <p>{description}</p>
+                )}
+              </div>
+              <ul>
+                {renderLinkItems}
+              </ul>
+              <div>
+                {project.fields.mediaList?.map((media) => {
+                  assertDefined(media);
+                  const file = media.fields.file;
+                  assertDefined(file);
+                  if (file.contentType.startsWith("video/")) {
+                    return (
+                      <video
+                        key={media.sys.id}
+                        src={"https://" + file.url}
+                        aria-description={media.fields.description}
+                        muted
+                        autoPlay={false}
+                        controls
+                      />
+                    )
+                  }
+                  if (file.contentType.startsWith("image/")) {
+                    return (
+                      <Image
+                        key={media.sys.id}
+                        src={"https://" + file.url}
+                        alt={media.fields.description ?? file.fileName}
+                        loading="lazy"
+                        fill
+                      />
+                    )
+                  }
+                  throw new Error(`${file.fileName} of type ${file.contentType} is not supported`);
+                })}
               </div>
             </div>
           </motion.div>

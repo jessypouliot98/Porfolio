@@ -11,7 +11,7 @@ export type VideoContentProps = {
 export function VideoContent({ className, media, focused }: VideoContentProps) {
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
   const file = media.fields.file;
-  assertDefined(file);
+  assertDefined(file, "video media not defined");
 
   useEffect(() => {
     if (!video) return;

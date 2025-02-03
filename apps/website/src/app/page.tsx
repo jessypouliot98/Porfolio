@@ -1,7 +1,8 @@
 import { ProjectCard } from "../components/ProjectCard/ProjectCard";
 import React, { cache, Suspense } from "react";
 import { queryProjectList } from "@repo/api/src/contentful/project/queries/queryProjectList";
-import { contentfulClient, contentfulImageProps } from "../utils/cms";
+import { contentfulImageProps } from "../utils/cms/client";
+import { contentfulClient } from "../utils/cms/server";
 import { Header } from "../parts/Header/Header";
 import { Footer } from "../parts/Footer/Footer";
 import { queryTechnologyList } from "@repo/api/src/contentful/technology/queries/queryTechnologyList";
@@ -59,7 +60,7 @@ export default async function Home() {
           <ul className="flex flex-wrap justify-center gap-6">
             {technologies.map((technology) => {
               const image = technology.fields.image;
-              assertDefined(image);
+              assertDefined(image, "tech image not defined");
               const level = technology.fields.level ?? 40;
               const indexLevel = Math.floor(level / 10);
               const size = [48,36,28][indexLevel] ?? 28;

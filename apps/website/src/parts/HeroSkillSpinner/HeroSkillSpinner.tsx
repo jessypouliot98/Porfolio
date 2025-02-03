@@ -9,7 +9,7 @@ import { SkillSpinner } from "../SkillSpinner/SkillSpinner";
 import { clsx } from "clsx";
 import React, { cache } from "react";
 import { querySkillCircle } from "@repo/api/src/contentful/skill-circle/queries/querySkillCircle";
-import { contentfulClient } from "../../utils/cms";
+import { contentfulClient } from "../../utils/cms/server";
 
 const getSkillCircle = cache(() => {
   return querySkillCircle(contentfulClient, {

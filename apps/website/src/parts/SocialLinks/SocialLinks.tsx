@@ -1,6 +1,6 @@
 import React from "react";
 import { querySocialList } from "@repo/api/src/contentful/social/queries/querySocialList";
-import { contentfulClient } from "../../utils/cms";
+import { contentfulClient } from "../../utils/cms/server";
 import { SocialLinksLayout } from "./SocialLinks.Layout";
 import { SocialLinksLink } from "./SocialLinks.Link";
 

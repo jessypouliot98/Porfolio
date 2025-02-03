@@ -13,7 +13,7 @@ export type MediaContentProps = {
 
 export function MediaContent({ className, classNames, media, focused }: MediaContentProps) {
   const file = media.fields.file;
-  assertDefined(file);
+  assertDefined(file, "media file not defined");
 
   if (file.contentType.startsWith("video/")) {
     return (

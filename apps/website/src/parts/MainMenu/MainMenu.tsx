@@ -30,7 +30,7 @@ export function MainMenu() {
     const sections = SECTIONS
       .map((sectionId) => {
         const el = document.getElementById(sectionId);
-        assertDefined(el);
+        assertDefined(el, "element not defined");
         return {
           id: sectionId,
           el,

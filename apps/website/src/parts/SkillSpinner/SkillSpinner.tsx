@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SkillCircleEntry, SkillRingEntry } from "@repo/api/src/contentful/skill-circle/model";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { TechnologyEntry } from "@repo/api/src/contentful/technology/model";
-import { contentfulImageProps } from "../../utils/cms";
+import { contentfulImageProps } from "../../utils/cms/client";
 
 function getRingSize(ring: SkillRingEntry) {
   const conf = ring.fields.configuration;
@@ -65,7 +65,7 @@ export function SkillSpinner({ className, skillCircle }: React.PropsWithChildren
         style={cssVars}
       >
         {skillCircle.fields.rings.map((ring, i) => {
-          assertDefined(ring);
+          assertDefined(ring, "ring not defined");
           return (
             <SkillSpinner.Ring
               key={ring.sys.id}
@@ -120,7 +120,7 @@ export namespace SkillSpinner {
           style={ringCssVars}
         >
           {skills.map((skill, i) => {
-            assertDefined(skill);
+            assertDefined(skill, "skill not defined");
             return (
               <Bubble
                 key={skill.fields.slug}
@@ -150,7 +150,7 @@ export namespace SkillSpinner {
 
   export function Bubble({ className, technology, size, offset, anglePercent }: BubbleProps) {
     const image = technology.fields.image;
-    assertDefined(image);
+    assertDefined(image, "skill image not defined");
 
     const offsetCss = typeof offset === "number" ? `${offset}px` : offset;
     const cssVars: object = {

@@ -10,7 +10,7 @@ import { clsx } from "clsx";
 import { Badge } from "@repo/ui/src/components/Badge/Badge";
 import { ProjectEntry } from "@repo/api/src/contentful/project/model";
 import { assertDefined } from "@repo/util/src/assertDefined";
-import { contentfulImageProps } from "../../utils/cms";
+import { contentfulImageProps } from "../../utils/cms/client";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
 import { Carousel } from "@repo/ui/src/components/Carousel/Carousel";
 import { MediaContent } from "@repo/ui/src/components/contentful/MediaContent/MediaContent";
@@ -26,7 +26,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
   const [isOpen, setIsOpen] = useState(false);
   const id = project.sys.id
   const { description, title, thumbnail, technologies } = project.fields;
-  assertDefined(thumbnail);
+  assertDefined(thumbnail, "thumbnail not defined");
 
   const mediaList = useMemo(() => {
     if (!project.fields.mediaList) {
@@ -35,7 +35,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
     return [
       thumbnail,
       ...project.fields.mediaList.map((media) => {
-        assertDefined(media);
+        assertDefined(media, "project media not defined");
         return media;
       }),
     ];
@@ -43,7 +43,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
   const thumbnailSrc = contentfulImageProps(thumbnail).src;
   const thumbnailAlt = `${title} thumbnail`;
   const renderTechListItems = technologies.map((tech) => {
-    assertDefined(tech);
+    assertDefined(tech, "project tech not defined");
     return (
       <li key={tech.sys.id}>
         <Badge>{tech.fields.name}</Badge>
@@ -51,7 +51,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
     )
   });
   const renderLinkItems = project.fields.links?.map((link) => {
-    assertDefined(link);
+    assertDefined(link, "project link not defined");
     return (
       <li key={link.sys.id}>
         <ButtonLinkContentful link={link} />

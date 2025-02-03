@@ -46,6 +46,7 @@ export function Header({ className, backgroundContent }: HeaderProps) {
   return (
     <header
       ref={setHeader}
+      role="banner"
       className={clsx(
         "relative pt-(--h-nav)",
         "bg-gradient-to-b from-neutral-900 from-70% to-transparent",
@@ -57,6 +58,7 @@ export function Header({ className, backgroundContent }: HeaderProps) {
       </div>
       <nav
         ref={navRef}
+        role="navigation"
         data-transparent={true}
         className={clsx(
           "group/nav transition-colors z-10 shadow fixed h-(--h-nav) top-0 inset-x-0",

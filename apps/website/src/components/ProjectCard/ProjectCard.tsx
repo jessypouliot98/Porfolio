@@ -69,7 +69,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
         <Card
           asChild
           id={id}
-          className="block relative text-left size-full !bg-black"
+          className="block text-left size-full !bg-black"
           aria-description={description}
         >
           <motion.button
@@ -78,7 +78,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
             layoutId={`${id}-container`}
           >
             <motion.div
-              className="bg-black size-full"
+              className="bg-black size-full relative"
               layoutId={`${id}-image`}
             >
               <Image
@@ -91,6 +91,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 alt={thumbnailAlt}
                 loading={thumbnailLoading}
                 fill
+                sizes="25vw"
               />
             </motion.div>
             <div
@@ -144,7 +145,8 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
             </motion.div>
             <button
               type="button"
-              className="absolute transition bg-black/30 hover:bg-black/40 text-xl text-white p-2 top-4 right-4"
+              className="absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-2xl text-white p-2 top-4 right-4"
+              aria-label="Close"
               onClick={() => setIsOpen(false)}
             >
               <IconX />

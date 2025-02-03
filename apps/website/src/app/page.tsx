@@ -38,6 +38,7 @@ export default async function Home() {
       />
       <main
         id="main"
+        role="main"
         className="w-full max-w-screen-2xl mx-auto -mt-[var(--overlap)] space-y-12 py-12"
       >
         <section id="projects" className="p-6 space-y-6">
@@ -82,6 +83,10 @@ export default async function Home() {
                     <div className="aspect-square grid place-items-center">
                       <Image
                         {...contentfulImageProps(image)}
+                        style={{
+                          width: `${size}px`,
+                          height: `${size}px`
+                        }}
                         width={size}
                         height={size}
                         loading="lazy"

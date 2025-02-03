@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend, Jersey_15 } from "next/font/google";
-import "./globals.css";
 import "@repo/ui/dist/styles.css"
+import "./globals.css";
 import React from "react";
 
 const lexendSans = Lexend({
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
-        {children}
-      </body>
+    <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
+      {children}
+    </body>
     </html>
   );
 }

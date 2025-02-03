@@ -30,8 +30,8 @@
 }
 
 [data-is="contentful-rich-text"] hr { @apply my-6; }
-[data-is="contentful-rich-text"] b { @apply font-bold text-blue-500; }
-[data-is="contentful-rich-text"] a { @apply text-blue-500 underline; }
+[data-is="contentful-rich-text"] b { @apply font-bold text-blue-600; }
+[data-is="contentful-rich-text"] a { @apply text-blue-600 underline; }
 [data-is="contentful-rich-text"] i { @apply italic; }
 [data-is="contentful-rich-text"] code { @apply inline-block font-mono px-[0.4em] py-[0.2em] text-[0.8em] bg-gray-100 }
 

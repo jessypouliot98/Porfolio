@@ -32,6 +32,8 @@ export function MediaContent({ className, classNames, media, focused }: MediaCon
         src={"https://" + file.url}
         alt={media.fields.description ?? file.fileName}
         loading="lazy"
+        width="auto"
+        height="auto"
       />
     )
   }

@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 const variants = {
   none: "",
-  primary: "text-white bg-blue-500 hover:bg-blue-600 disabled:opacity-40"
+  primary: "text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-40"
 } satisfies Record<string, string>;
 
 type Variant = keyof typeof variants;

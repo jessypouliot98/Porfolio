@@ -76,7 +76,7 @@ function Item({ href, selected, label }: ItemProps) {
   return (
     <li
       className="group/item"
-      aria-selected={selected}
+      aria-current={selected ? "page" : false}
     >
       <Link
         className={clsx(

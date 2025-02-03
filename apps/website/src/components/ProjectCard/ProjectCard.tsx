@@ -145,6 +145,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
             <button
               type="button"
               className="absolute transition bg-black/30 hover:bg-black/40 text-xl text-white p-2 top-4 right-4"
+              aria-label="Close"
               onClick={() => setIsOpen(false)}
             >
               <IconX />

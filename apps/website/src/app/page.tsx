@@ -83,6 +83,10 @@ export default async function Home() {
                     <div className="aspect-square grid place-items-center">
                       <Image
                         {...contentfulImageProps(image)}
+                        style={{
+                          width: `${size}px`,
+                          height: `${size}px`
+                        }}
                         width={size}
                         height={size}
                         loading="lazy"

@@ -177,6 +177,7 @@ export namespace SkillSpinner {
                 {...contentfulImageProps(image)}
                 loading="lazy"
                 fill
+                sizes={typeof size === "number" ? `${size}px` : size}
               />
             </div>
           </div>

@@ -8,6 +8,9 @@ export type IconProps = IconBaseProps & {
 export function Icon({ icon, ...props }: IconProps) {
   const Comp = icon in icons ? icons[icon as keyof typeof icons] : icons.IconQuestionMark;
   return (
-    <Comp {...props} />
+    <Comp
+      data-icon={icon}
+      {...props}
+    />
   )
 }

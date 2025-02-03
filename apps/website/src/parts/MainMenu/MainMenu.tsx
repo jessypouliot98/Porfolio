@@ -74,15 +74,13 @@ type ItemProps = {
 
 function Item({ href, label, selected }: ItemProps) {
   return (
-    <li
-      className="group/item"
-    >
+    <li>
       <Link
         className={clsx(
           "transition-colors flex justify-center items-center h-full px-3 pb-1 pt-1.5 border-b-4",
           "text-black group-data-[transparent=true]/nav:text-white",
           "bg-transparent hover:bg-gray-500/10",
-          "border-transparent aria-[current=page]/item:border-blue-500",
+          "border-transparent aria-[current=page]:border-blue-500",
         )}
         href={href}
         aria-current={selected ? "page" : false}

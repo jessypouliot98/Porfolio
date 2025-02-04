@@ -167,7 +167,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                       <a
                         type="button"
                         className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 bottom-4 right-4"
-                        aria-label="Option"
+                        aria-label="Open"
                         href={"https:" + file.url}
                         target="_blank"
                         rel="noopener noreferrer"

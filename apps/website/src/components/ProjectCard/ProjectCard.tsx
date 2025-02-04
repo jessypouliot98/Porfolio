@@ -49,7 +49,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
     assertDefined(tech, "project tech not defined");
     return (
       <li key={tech.sys.id}>
-        <Badge>{tech.fields.name}</Badge>
+        <Badge variant="secondary">{tech.fields.name}</Badge>
       </li>
     )
   });

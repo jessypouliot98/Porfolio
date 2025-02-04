@@ -9,4 +9,5 @@ export {
   BiQuestionMark as IconQuestionMark,
   BiBriefcase as IconBriefcase,
   BiLogoChrome as IconLogoChrome,
+  BiLinkExternal as IconLinkExternal,
 } from "react-icons/bi";

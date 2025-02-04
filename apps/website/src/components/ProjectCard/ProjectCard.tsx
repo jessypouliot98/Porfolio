@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import React, { useMemo, useState } from "react";
 import Image, { ImageProps } from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
-import { IconX } from "@repo/ui/src/components/icons";
+import { IconLinkExternal, IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
 import { Badge } from "@repo/ui/src/components/Badge/Badge";
 import { ProjectEntry } from "@repo/api/src/contentful/project/model";
@@ -17,6 +17,7 @@ import { MediaContent } from "@repo/ui/src/components/contentful/MediaContent/Me
 import { ButtonLinkContentful } from "@repo/ui/src/components/contentful/ButtonLinkContentful/ButtonLinkContentful";
 import { CarouselProvider } from "@repo/ui/src/components/Carousel/CarouselProvider";
 import { CarouselDots } from "@repo/ui/src/components/Carousel/CarouselDots";
+import { CarouselContext } from "@repo/ui/src/components/Carousel/CarouselContext";
 
 export type ProjectCardProps = {
   className?: string;
@@ -125,41 +126,65 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
         <Card asChild className="relative">
           <motion.div layoutId={`${id}-container`}>
             <CarouselProvider data={mediaList}>
-              <motion.div
-                className="relative aspect-video bg-gray-200"
-                layoutId={`${id}-image`}
-              >
-                <Carousel<typeof mediaList[number]>
-                  className="size-full"
-                  keyExtractor={(media) => media.sys.id}
-                  renderItem={({ item: media, focused }) => (
-                    <MediaContent
-                      className="size-full"
-                      classNames={{
-                        image: "object-contain pointer-events-none",
-                        video: ""
-                      }}
-                      media={media}
-                      focused={focused}
-                    />
-                  )}
-                />
-              </motion.div>
+              <div className="relative">
+                <motion.div
+                  className="relative aspect-video bg-gray-200"
+                  layoutId={`${id}-image`}
+                >
+                  <Carousel<typeof mediaList[number]>
+                    className="size-full"
+                    keyExtractor={(media) => media.sys.id}
+                    renderItem={({ item: media, focused }) => (
+                      <MediaContent
+                        className="size-full"
+                        classNames={{
+                          image: "object-contain pointer-events-none",
+                          video: ""
+                        }}
+                        media={media}
+                        focused={focused}
+                      />
+                    )}
+                  />
+                </motion.div>
+                <button
+                  type="button"
+                  className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 top-4 right-4"
+                  aria-label="Close"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <IconX/>
+                </button>
+                <CarouselContext.Consumer>
+                  {(ctx) => {
+                    assertDefined(ctx, "ctx must be defined");
+                    const item = ctx.data[ctx.currentIndex] as typeof mediaList[number] | undefined;
+                    assertDefined(item, "item must be defined");
+                    const file = item.fields.file;
+                    assertDefined(file, "file must be defined");
+
+                    return (
+                      <a
+                        type="button"
+                        className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 bottom-4 right-4"
+                        aria-label="Option"
+                        href={"https:" + file.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <IconLinkExternal/>
+                      </a>
+                    )
+                  }}
+                </CarouselContext.Consumer>
+              </div>
               <CarouselDots<typeof mediaList[number]>
                 className="p-4"
                 keyExtractor={(media) => media.sys.id}
               />
             </CarouselProvider>
-            <button
-              type="button"
-              className="absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-2xl text-white p-2 top-4 right-4"
-              aria-label="Close"
-              onClick={() => setIsOpen(false)}
-            >
-              <IconX/>
-            </button>
             <div className="px-4 pb-6 space-y-4">
-              <motion.ul
+            <motion.ul
                 className="flex flex-wrap gap-1"
                 layoutId={`${id}-techs`}
               >

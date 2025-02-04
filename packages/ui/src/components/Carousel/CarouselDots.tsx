@@ -10,7 +10,7 @@ export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsPro
   const { data, currentIndex, setCurrentIndex } = useCarouselData<TData>();
   return (
     <ol
-      className={clsx("flex gap-2 justify-center items-center", className)}
+      className={clsx("flex gap-2 justify-center items-center flex-wrap", className)}
       role="listbox"
     >
       {data.map((item, index) => (

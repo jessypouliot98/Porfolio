@@ -10,4 +10,6 @@ export {
   BiBriefcase as IconBriefcase,
   BiLogoChrome as IconLogoChrome,
   BiLinkExternal as IconLinkExternal,
+  BiCaretLeft as IconCaretLeft,
+  BiCaretRight as IconCaretRight,
 } from "react-icons/bi";

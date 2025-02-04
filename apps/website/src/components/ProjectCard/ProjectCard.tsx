@@ -179,7 +179,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 </CarouselContext.Consumer>
               </div>
               <CarouselDots<typeof mediaList[number]>
-                className="p-4"
+                className="px-4 py-2"
                 keyExtractor={(media) => media.sys.id}
               />
             </CarouselProvider>

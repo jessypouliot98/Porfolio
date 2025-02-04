@@ -1,3 +1,7 @@
+import React, { Suspense } from "react";
+import { SocialLinksSkeleton } from "../SocialLinks/SocialLinks.Skeleton";
+import { SocialLinks } from "../SocialLinks/SocialLinks";
+
 export function Hero() {
   return (
     <div className="py-12 text-white space-y-8">
@@ -14,7 +18,9 @@ export function Hero() {
       </div>
       <div className="space-y-2 max-w-2xl">
         <p>
-          I’m passionate about building robust, scalable applications that push the limits of what’s possible. From designing efficient backend systems to developing seamless, high-performance user interfaces, I enjoy tackling complex challenges across the stack.
+          I’m passionate about building robust, scalable applications that push the limits of what’s possible. From
+          designing efficient backend systems to developing seamless, high-performance user interfaces, I enjoy tackling
+          complex challenges across the stack.
         </p>
         <p>
           I’m always eager to learn and experiment with new technologies, frameworks, and programming languages. Right
@@ -24,6 +30,9 @@ export function Hero() {
           the forefront of modern development.
         </p>
       </div>
+      <Suspense fallback={<SocialLinksSkeleton/>}>
+        <SocialLinks/>
+      </Suspense>
     </div>
   )
 }

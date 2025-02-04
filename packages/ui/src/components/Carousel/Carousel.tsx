@@ -1,20 +1,21 @@
 "use client";
 
 import { motion, useMotionValue } from "motion/react";
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import { clsx } from "clsx";
+import { useCarouselData } from "./useCarouselData";
 
 export type CarouselProps<TData> = {
   className?: string;
-  data: TData[];
+  data?: TData[];
   keyExtractor: (key: TData) => string;
   renderItem: (arg: { item: TData; index: number; focused: boolean }) => JSX.Element;
 }
 
 const DRAG_BUFFER = 50;
 
-export function Carousel<TData>({ className, data, keyExtractor, renderItem }: CarouselProps<TData>) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function Carousel<TData>({ className, data: maybeData, keyExtractor, renderItem }: CarouselProps<TData>) {
+  const { data, currentIndex, setCurrentIndex } = useCarouselData(maybeData);
   const dragX = useMotionValue(0);
 
   const handleDragEnd = () => {

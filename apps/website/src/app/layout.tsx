@@ -3,6 +3,8 @@ import { Lexend, Jersey_15 } from "next/font/google";
 import "@repo/ui/dist/styles.css"
 import "./globals.css";
 import React from "react";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const lexendSans = Lexend({
   variable: "--font-sans",
@@ -25,9 +27,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-    <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
-      {children}
-    </body>
+      <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
+        {children}
+      </body>
+      <Analytics/>
+      <SpeedInsights/>
     </html>
   );
 }

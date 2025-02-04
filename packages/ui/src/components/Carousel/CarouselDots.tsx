@@ -1,6 +1,6 @@
 import { useCarouselData } from "./useCarouselData";
 import { clsx } from "clsx";
-import { IconCaretLeft, IconCaretRight, IconX } from "../icons";
+import { IconCaretLeft, IconCaretRight } from "../icons";
 
 export type CarouselDotsProps<TData> = {
   className?: string;

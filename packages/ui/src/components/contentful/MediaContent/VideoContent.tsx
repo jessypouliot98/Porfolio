@@ -32,6 +32,8 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
       aria-description={media.fields.description}
       muted
       loop
+      // Fixes ios play in fullscreen
+      playsInline
     />
   )
 }

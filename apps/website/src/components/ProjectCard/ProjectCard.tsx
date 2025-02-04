@@ -15,6 +15,8 @@ import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRende
 import { Carousel } from "@repo/ui/src/components/Carousel/Carousel";
 import { MediaContent } from "@repo/ui/src/components/contentful/MediaContent/MediaContent";
 import { ButtonLinkContentful } from "@repo/ui/src/components/contentful/ButtonLinkContentful/ButtonLinkContentful";
+import { CarouselProvider } from "@repo/ui/src/components/Carousel/CarouselProvider";
+import { CarouselDots } from "@repo/ui/src/components/Carousel/CarouselDots";
 
 export type ProjectCardProps = {
   className?: string;
@@ -122,36 +124,41 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
       >
         <Card asChild className="relative">
           <motion.div layoutId={`${id}-container`}>
-            <motion.div
-              className="relative aspect-video bg-gray-200"
-              layoutId={`${id}-image`}
-            >
-              <Carousel
-                className="size-full"
-                data={mediaList}
+            <CarouselProvider data={mediaList}>
+              <motion.div
+                className="relative aspect-video bg-gray-200"
+                layoutId={`${id}-image`}
+              >
+                <Carousel<typeof mediaList[number]>
+                  className="size-full"
+                  keyExtractor={(media) => media.sys.id}
+                  renderItem={({ item: media, focused }) => (
+                    <MediaContent
+                      className="size-full"
+                      classNames={{
+                        image: "object-contain pointer-events-none",
+                        video: ""
+                      }}
+                      media={media}
+                      focused={focused}
+                    />
+                  )}
+                />
+              </motion.div>
+              <CarouselDots<typeof mediaList[number]>
+                className="p-4"
                 keyExtractor={(media) => media.sys.id}
-                renderItem={({ item: media, focused }) => (
-                  <MediaContent
-                    className="size-full"
-                    classNames={{
-                      image: "object-contain pointer-events-none",
-                      video: ""
-                    }}
-                    media={media}
-                    focused={focused}
-                  />
-                )}
               />
-            </motion.div>
+            </CarouselProvider>
             <button
               type="button"
               className="absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-2xl text-white p-2 top-4 right-4"
               aria-label="Close"
               onClick={() => setIsOpen(false)}
             >
-              <IconX />
+              <IconX/>
             </button>
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-4 pb-6 space-y-4">
               <motion.ul
                 className="flex flex-wrap gap-1"
                 layoutId={`${id}-techs`}
@@ -162,7 +169,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 className="font-pixel text-6xl text-blue-500"
                 layoutId={`${id}-title`}
               >
-                {title}
+              {title}
               </motion.h2>
               <div>
                 {project.fields.content ? (

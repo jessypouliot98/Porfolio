@@ -2,16 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
-import { MainMenu } from "../MainMenu/MainMenu";
-import { Hero } from "../Hero/Hero";
 import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
+import { MainMenu } from "../MainMenu/MainMenu";
 
 export type HeaderProps = {
   className?: string;
   backgroundContent: React.ReactNode;
 };
 
-export function Header({ className, backgroundContent }: HeaderProps) {
+export function Header({ children, className, backgroundContent }: React.PropsWithChildren<HeaderProps>) {
   const [header, setHeader] = useState<HTMLElement | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -65,11 +64,9 @@ export function Header({ className, backgroundContent }: HeaderProps) {
           "bg-white/90 data-[transparent=true]:bg-white/10 backdrop-blur",
         )}
       >
-        <MainMenu />
+        <MainMenu/>
       </nav>
-      <section id="hero" className="relative max-w-screen-2xl mx-auto px-6">
-        <Hero/>
-      </section>
+      {children}
     </header>
   )
 }

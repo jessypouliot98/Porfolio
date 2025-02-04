@@ -11,6 +11,7 @@ import { Card } from "@repo/ui/src/components/Card/Card";
 import { clsx } from "clsx";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { HeroSkillSpinner } from "../parts/HeroSkillSpinner/HeroSkillSpinner";
+import { Hero } from "../parts/Hero/Hero";
 
 const getProjectList = cache(() => queryProjectList(contentfulClient));
 const getTechnologyList = cache(() => queryTechnologyList(contentfulClient));
@@ -35,7 +36,11 @@ export default async function Home() {
             </Suspense>
           </div>
         )}
-      />
+      >
+        <section id="hero" className="relative max-w-screen-2xl mx-auto px-6">
+          <Hero/>
+        </section>
+      </Header>
       <main
         id="main"
         role="main"
@@ -44,16 +49,14 @@ export default async function Home() {
         <section id="projects" className="p-6 space-y-6">
           <h2 className="font-pixel text-4xl text-white">Projects</h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {projects.map((project, i) => {
-              return (
-                <li key={project.sys.id}>
-                  <ProjectCard
-                    project={project}
-                    thumbnailLoading={i < 4 ? "eager" : "lazy"}
-                  />
-                </li>
-              )
-            })}
+            {projects.map((project, i) => (
+              <li key={project.sys.id}>
+                <ProjectCard
+                  project={project}
+                  thumbnailLoading={i < 4 ? "eager" : "lazy"}
+                />
+              </li>
+            ))}
           </ul>
         </section>
         <section id="technologies" className="p-6 space-y-3">

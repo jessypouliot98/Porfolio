@@ -14,6 +14,7 @@ export {
   BiLinkExternal as IconLinkExternal,
   BiCaretLeft as IconCaretLeft,
   BiCaretRight as IconCaretRight,
+  BiLogoDiscord as IconLogoDiscord,
 } from "react-icons/bi";
 
 // https://react-icons.github.io/react-icons/icons/io5/

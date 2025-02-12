@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
-[data-is="contentful-rich-text"] ul:not(:last-child),
-[data-is="contentful-rich-text"] ol:not(:last-child),
-[data-is="contentful-rich-text"] blockquote:not(:last-child),
-[data-is="contentful-rich-text"] h1:not(:last-child),
-[data-is="contentful-rich-text"] h2:not(:last-child),
-[data-is="contentful-rich-text"] h3:not(:last-child),
-[data-is="contentful-rich-text"] h4:not(:last-child),
-[data-is="contentful-rich-text"] h5:not(:last-child),
-[data-is="contentful-rich-text"] h6:not(:last-child),
-[data-is="contentful-rich-text"] p:not(:last-child) {
-  @apply mt-4;
+[data-is="contentful-rich-text"] ul:not(:first-child),
+[data-is="contentful-rich-text"] ol:not(:first-child),
+[data-is="contentful-rich-text"] blockquote:not(:first-child),
+[data-is="contentful-rich-text"] h1:not(:first-child),
+[data-is="contentful-rich-text"] h2:not(:first-child),
+[data-is="contentful-rich-text"] h3:not(:first-child),
+[data-is="contentful-rich-text"] h4:not(:first-child),
+[data-is="contentful-rich-text"] h5:not(:first-child),
+[data-is="contentful-rich-text"] h6:not(:first-child),
+[data-is="contentful-rich-text"] p:not(:first-child) {
+  @apply mt-[1.4em];
 }
 
 [data-is="contentful-rich-text"] ul,

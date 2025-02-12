@@ -31,7 +31,7 @@ export function Carousel<TData>({ className, data: maybeData, keyExtractor, rend
   return (
     <div
       className={clsx(
-        "relative overflow-hidden",
+        "relative",
         className,
       )}
     >

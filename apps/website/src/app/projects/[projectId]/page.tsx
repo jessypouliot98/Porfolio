@@ -16,6 +16,11 @@ import {
 import { isDefined } from "@repo/util/src/isDefined";
 import { ProjectCardLinks } from "../../../components/ProjectCard/ProjectCard.Links";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
+import { IconLinkExternal } from "@repo/ui/src/components/icons";
+import { CarouselContext } from "@repo/ui/src/components/Carousel/CarouselContext";
+import {
+  ProjectCardCarouselButtonOpenInNewTab
+} from "../../../components/ProjectCard/ProjectCardCarousel.ButtonOpenInNewTab";
 
 type PageProps = {
   params: Promise<{ projectId: string }>
@@ -87,9 +92,10 @@ export default async function ProjectPage({ params }: PageProps) {
           </ProjectCardTitle>
           <ProjectCardTechList
             id={projectId}
+            className="max-w-screen-sm flex-wrap"
             technologies={technologies}
           />
-          <p className="text-white">{project.fields.description}</p>
+          <p className="text-white max-w-screen-sm">{project.fields.description}</p>
           {!!project.fields.links && (
             <ProjectCardLinks
               links={project.fields.links}
@@ -103,10 +109,16 @@ export default async function ProjectPage({ params }: PageProps) {
         className="w-full max-w-screen-2xl mx-auto px-6 -mt-[var(--overlap)] space-y-12 py-12"
       >
         <ProjectCardCarouselProvider mediaList={mediaList}>
-          <ProjectCardCarousel
-            className="relative bg-gray-200 aspect-video max-w-screen-md mx-auto"
-            id={project.sys.id}
-          />
+          <div className="relative aspect-video max-w-screen-md mx-auto">
+            <ProjectCardCarousel
+              id={project.sys.id}
+              className="relative size-full"
+              overflow
+            />
+            <ProjectCardCarouselButtonOpenInNewTab
+              className="absolute bottom-4 right-4"
+            />
+          </div>
           <ProjectCardCarouselDots/>
         </ProjectCardCarouselProvider>
         <div className="max-w-screen-md px-0 md:px-12">

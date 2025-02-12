@@ -17,6 +17,7 @@ import { ProjectCardCarousel, ProjectCardCarouselDots, ProjectCardCarouselProvid
 import { ProjectCardTitle } from "./ProjectCard.Title";
 import Link from "next/link";
 import { ProjectCardLinks } from "./ProjectCard.Links";
+import { ProjectCardCarouselButtonOpenInNewTab } from "./ProjectCardCarousel.ButtonOpenInNewTab";
 
 export type ProjectCardProps = {
   className?: string;
@@ -112,8 +113,8 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
             <ProjectCardCarouselProvider mediaList={mediaList}>
               <div className="relative">
                 <ProjectCardCarousel
-                  className="bg-gray-200 aspect-video"
                   id={project.sys.id}
+                  className="aspect-video"
                 />
                 <Link
                   className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 top-4 left-4"
@@ -130,32 +131,13 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 >
                   <IconX/>
                 </button>
-                <CarouselContext.Consumer>
-                  {(ctx) => {
-                    assertDefined(ctx, "ctx must be defined");
-                    const item = ctx.data[ctx.currentIndex] as typeof mediaList[number] | undefined;
-                    assertDefined(item, "item must be defined");
-                    const file = item.fields.file;
-                    assertDefined(file, "file must be defined");
-
-                    return (
-                      <a
-                        type="button"
-                        className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 bottom-4 right-4"
-                        aria-label="Open"
-                        href={"https:" + file.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <IconLinkExternal/>
-                      </a>
-                    )
-                  }}
-                </CarouselContext.Consumer>
+                <ProjectCardCarouselButtonOpenInNewTab
+                  className="absolute bottom-4 right-4"
+                />
               </div>
               <ProjectCardCarouselDots/>
             </ProjectCardCarouselProvider>
-            <div className="px-4 pb-6 space-y-4">
+            <div className="px-4 pt-4 pb-6 space-y-4">
               <ProjectCardTechList
                 className="flex-wrap"
                 id={id}

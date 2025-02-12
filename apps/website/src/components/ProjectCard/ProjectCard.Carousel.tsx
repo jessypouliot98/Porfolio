@@ -7,24 +7,29 @@ import { CarouselDots } from "@repo/ui/src/components/Carousel/CarouselDots";
 import { CarouselProvider } from "@repo/ui/src/components/Carousel/CarouselProvider";
 import React from "react";
 import { Asset } from "@repo/api/src/contentful";
+import { clsx } from "clsx";
 
 export type ProjectCardCarouselProps = {
   className?: string;
   id: string;
+  overflow?: boolean;
 }
 
-export function ProjectCardCarousel({ id, className }: React.PropsWithChildren<ProjectCardCarouselProps>) {
+export function ProjectCardCarousel({ id, className, overflow = false }: React.PropsWithChildren<ProjectCardCarouselProps>) {
   return (
     <motion.div
       className={className}
       layoutId={`${id}-image`}
     >
       <Carousel<Asset<"WITHOUT_UNRESOLVABLE_LINKS">>
-        className="size-full"
+        className={clsx(
+          "size-full",
+          !overflow && "overflow-hidden"
+        )}
         keyExtractor={(media) => media.sys.id}
         renderItem={({ item: media, focused }) => (
           <MediaContent
-            className="size-full"
+            className="size-full bg-gray-200"
             classNames={{
               image: "object-contain pointer-events-none",
               video: ""
@@ -55,6 +60,13 @@ export function ProjectCardCarouselDots() {
     <CarouselDots<Asset<"WITHOUT_UNRESOLVABLE_LINKS">>
       className="px-4 py-2"
       keyExtractor={(media) => media.sys.id}
+      labelExtractor={(media, index) => {
+        let label = `Select slide #${index + 1}`;
+        if (media.fields.title) {
+          label += ` (${media.fields.title})`;
+        }
+        return label;
+      }}
     />
   )
 }

@@ -17,7 +17,7 @@ export function CvPage({ t }: CvPageProps) {
     <Document>
       <Page
         size="LETTER"
-        style={tw("font-roboto-sans p-3 text-base leading-tight")}
+        style={tw("font-sans p-3 text-base leading-tight")}
       >
         <View style={tw("pb-3 gap-3")}>
           <View style={tw("px-2")}>

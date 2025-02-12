@@ -4,14 +4,12 @@ import { CvPage } from "@repo/cv/src/pages/CvPage/CvPage";
 import en from "@repo/cv/src/translations/en.json"
 import fr from "@repo/cv/src/translations/fr.json"
 import { registerFonts } from "@repo/cv/src/utils/registerFonts";
-import path from "path";
 
 type Params = {
   lang: string;
 }
 
-const fontPath = path.resolve(process.cwd(), "../../node_modules/@repo/cv/fonts");
-registerFonts(fontPath);
+registerFonts();
 
 export async function GET(
   request: NextRequest,

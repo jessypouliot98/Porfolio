@@ -1,4 +1,4 @@
-import React, { cache, Suspense, useMemo } from "react";
+import React, { cache } from "react";
 import { queryProject } from "@repo/api/src/contentful/project/queries/queryProject";
 import { contentfulClient } from "../../../utils/cms/server";
 import { Header } from "../../../parts/Header/Header";
@@ -7,7 +7,6 @@ import { ProjectCardTechList } from "../../../components/ProjectCard/ProjectCard
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { Metadata } from "next";
 import { Asset } from "@repo/api/src/contentful";
-import { motion } from "motion/react";
 import { ProjectCardTitle } from "../../../components/ProjectCard/ProjectCard.Title";
 import {
   ProjectCardCarousel,
@@ -42,7 +41,7 @@ export async function generateMetadata(
   }
 
   let mediaList: Array<Asset<"WITHOUT_UNRESOLVABLE_LINKS">> = project.fields.mediaList?.filter((media) => !!media) ?? [];
-  if (!!project.fields.thumbnail) {
+  if (project.fields.thumbnail) {
     mediaList = [project.fields.thumbnail, ...mediaList];
   }
 
@@ -69,7 +68,7 @@ export default async function ProjectPage({ params }: PageProps) {
   });
 
   let mediaList: Array<Asset<"WITHOUT_UNRESOLVABLE_LINKS">> = project.fields.mediaList?.filter(isDefined) ?? [];
-  if (!!project.fields.thumbnail) {
+  if (project.fields.thumbnail) {
     mediaList = [project.fields.thumbnail, ...mediaList];
   }
 

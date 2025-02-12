@@ -1,8 +1,8 @@
 import { Font } from "@react-pdf/renderer";
-import { resolve as pathResolve } from "node:path";
 
+// https://gist.github.com/karimnaaji/b6c9c9e819204113e9cabf290d580551
 
-export function registerFonts(fontPath: string) {
+export function registerFonts() {
   // Disable word hyphenation
   Font.registerHyphenationCallback((word) => [word]);
 
@@ -10,20 +10,20 @@ export function registerFonts(fontPath: string) {
     family: "Roboto",
     fonts: [
       {
-        src: pathResolve(fontPath, "Roboto-Regular.ttf"),
-        weight: 500,
+        src: "http://fonts.gstatic.com/s/roboto/v15/W5F8_SL0XFawnjxHGsZjJA.ttf",
+        weight: 400,
       },
       {
-        src: pathResolve(fontPath, "Roboto-Italic.ttf"),
-        weight: 500,
+        src: "http://fonts.gstatic.com/s/roboto/v15/hcKoSgxdnKlbH5dlTwKbow.ttf",
+        weight: 400,
         fontStyle: "italic",
       },
       {
-        src: pathResolve(fontPath, "Roboto-Medium.ttf"),
-        weight: 600,
+        src: "http://fonts.gstatic.com/s/roboto/v15/Uxzkqj-MIMWle-XP2pDNAA.ttf",
+        weight: 500,
       },
       {
-        src: pathResolve(fontPath, "Roboto-Bold.ttf"),
+        src: "http://fonts.gstatic.com/s/roboto/v15/bdHGHleUa-ndQCOrdpfxfw.ttf",
         weight: 700,
       }
     ]

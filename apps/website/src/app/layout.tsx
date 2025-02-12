@@ -30,8 +30,12 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <body className={`${lexendSans.className} ${lexendSans.variable} ${micro5.variable} antialiased bg-gray-50`}>
         {children}
       </body>
-      <Analytics/>
-      <SpeedInsights/>
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <Analytics/>
+          <SpeedInsights/>
+        </>
+      )}
     </html>
   );
 }

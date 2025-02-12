@@ -4,7 +4,7 @@ export const tw = createTw({
   theme: {
     extend: {
       fontFamily: {
-        "roboto-sans": "Roboto",
+        "sans": "Roboto",
       }
     }
   }

@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { clsx } from "clsx";
-import { assertDefined } from "@repo/util/src/assertDefined";
-import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
-import { usePathname } from "next/navigation";
 
 const SECTIONS = [
   "hero",
@@ -20,42 +17,42 @@ const LABELS = {
 } satisfies Record<typeof SECTIONS[number], string>
 
 export function MainMenu() {
-  const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
-  const currentSectionRef = useRef(currentSection);
-  currentSectionRef.current = currentSection;
-  const pathname = usePathname();
+  // const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
+  // const currentSectionRef = useRef(currentSection);
+  // currentSectionRef.current = currentSection;
+  // const pathname = usePathname();
 
-  useEffect(() => {
-    if (pathname !== "/") return;
-    const abortController = new AbortController();
-
-    const navHeightRem = parseFloat(getComputedStyle(document.body).getPropertyValue("--h-nav"));
-    const navOffset = convertRemToPixels(navHeightRem) + 1;
-
-    const sections = SECTIONS
-      .map((sectionId) => {
-        const el = document.getElementById(sectionId);
-        assertDefined(el, "element not defined");
-        return {
-          id: sectionId,
-          el,
-        };
-      })
-      .sort((a, b) => b.el.offsetTop - a.el.offsetTop);
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        const section = sections.find(({ el }) => el.offsetTop <= window.scrollY + navOffset);
-        const id = section?.id ?? SECTIONS[0];
-        if (id === currentSectionRef.current) return;
-        setCurrentSection(id);
-      },
-      { signal: abortController.signal }
-    );
-
-    return () => abortController.abort();
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (pathname !== "/") return;
+  //   const abortController = new AbortController();
+  //
+  //   const navHeightRem = parseFloat(getComputedStyle(document.body).getPropertyValue("--h-nav"));
+  //   const navOffset = convertRemToPixels(navHeightRem) + 1;
+  //
+  //   const sections = SECTIONS
+  //     .map((sectionId) => {
+  //       const el = document.getElementById(sectionId);
+  //       assertDefined(el, "element not defined");
+  //       return {
+  //         id: sectionId,
+  //         el,
+  //       };
+  //     })
+  //     .sort((a, b) => b.el.offsetTop - a.el.offsetTop);
+  //
+  //   window.addEventListener(
+  //     "scroll",
+  //     () => {
+  //       const section = sections.find(({ el }) => el.offsetTop <= window.scrollY + navOffset);
+  //       const id = section?.id ?? SECTIONS[0];
+  //       if (id === currentSectionRef.current) return;
+  //       setCurrentSection(id);
+  //     },
+  //     { signal: abortController.signal }
+  //   );
+  //
+  //   return () => abortController.abort();
+  // }, [pathname]);
 
   return (
     <menu className="flex px-6 w-full h-full max-w-screen-2xl mx-auto">
@@ -64,7 +61,8 @@ export function MainMenu() {
           key={section}
           href={`/#${section}`}
           label={LABELS[section]}
-          selected={currentSection === section}
+          // selected={currentSection === section}
+          selected={false}
         />
       ))}
     </menu>

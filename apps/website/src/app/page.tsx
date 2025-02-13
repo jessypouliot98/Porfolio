@@ -44,7 +44,7 @@ export default async function Home() {
       <main
         id="main"
         role="main"
-        className="w-full max-w-screen-2xl mx-auto -mt-[var(--overlap)] space-y-12 py-12"
+        className="relative w-full max-w-screen-2xl mx-auto -mt-[var(--overlap)] space-y-12 py-12"
       >
         <section id="projects" className="p-6 space-y-6">
           <h2 className="font-pixel text-4xl text-white">Projects</h2>

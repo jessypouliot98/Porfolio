@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <div className="[--overlap:theme(spacing.96)] min-h-screen">
+    <div className="[--overlap:theme(spacing.72)] md:[--overlap:theme(spacing.96)] min-h-screen overflow-x-hidden">
       <Header
         className="pb-(--overlap)"
       >
@@ -104,7 +104,7 @@ export default async function ProjectPage({ params }: PageProps) {
       <main
         id="main"
         role="main"
-        className="w-full max-w-screen-2xl mx-auto px-6 -mt-[var(--overlap)] space-y-12 py-12"
+        className="relative w-full max-w-screen-2xl mx-auto px-6 -mt-[var(--overlap)] space-y-12 py-12"
       >
         <ProjectCardCarouselProvider mediaList={mediaList}>
           <div className="relative aspect-video max-w-screen-md mx-auto">

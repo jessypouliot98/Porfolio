@@ -33,13 +33,13 @@ export function CarouselDots<TData>({ className, keyExtractor, labelExtractor }:
       <ol
         className="flex gap-2 justify-center items-center flex-wrap"
         role="listbox"
+        aria-label="Carousel slide options"
       >
         {data.map((item, index) => (
           <li
             key={keyExtractor(item, index)}
             className="group/dot"
             role="option"
-            aria-label={labelExtractor(item, index)}
             aria-selected={index === currentIndex}
           >
             <button
@@ -48,6 +48,7 @@ export function CarouselDots<TData>({ className, keyExtractor, labelExtractor }:
                 "block size-4 rounded-full transition-colors",
                 "bg-blue-500 group-aria-selected/dot:bg-orange-500"
               )}
+              aria-label={labelExtractor(item, index)}
               onClick={() => setCurrentIndex(index)}
             />
           </li>

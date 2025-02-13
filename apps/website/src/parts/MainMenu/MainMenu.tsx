@@ -25,37 +25,37 @@ export function MainMenu() {
   currentSectionRef.current = currentSection;
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (pathname !== "/") return;
-    const abortController = new AbortController();
-
-    const navHeightRem = parseFloat(getComputedStyle(document.body).getPropertyValue("--h-nav"));
-    const navOffset = convertRemToPixels(navHeightRem) + 1;
-
-    const sections = SECTIONS
-      .map((sectionId) => {
-        const el = document.getElementById(sectionId);
-        assertDefined(el, "element not defined");
-        return {
-          id: sectionId,
-          el,
-        };
-      })
-      .sort((a, b) => b.el.offsetTop - a.el.offsetTop);
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        const section = sections.find(({ el }) => el.offsetTop <= window.scrollY + navOffset);
-        const id = section?.id ?? SECTIONS[0];
-        if (id === currentSectionRef.current) return;
-        setCurrentSection(id);
-      },
-      { signal: abortController.signal }
-    );
-
-    return () => abortController.abort();
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (pathname !== "/") return;
+  //   const abortController = new AbortController();
+  //
+  //   const navHeightRem = parseFloat(getComputedStyle(document.body).getPropertyValue("--h-nav"));
+  //   const navOffset = convertRemToPixels(navHeightRem) + 1;
+  //
+  //   const sections = SECTIONS
+  //     .map((sectionId) => {
+  //       const el = document.getElementById(sectionId);
+  //       assertDefined(el, "element not defined");
+  //       return {
+  //         id: sectionId,
+  //         el,
+  //       };
+  //     })
+  //     .sort((a, b) => b.el.offsetTop - a.el.offsetTop);
+  //
+  //   window.addEventListener(
+  //     "scroll",
+  //     () => {
+  //       const section = sections.find(({ el }) => el.offsetTop <= window.scrollY + navOffset);
+  //       const id = section?.id ?? SECTIONS[0];
+  //       if (id === currentSectionRef.current) return;
+  //       setCurrentSection(id);
+  //     },
+  //     { signal: abortController.signal }
+  //   );
+  //
+  //   return () => abortController.abort();
+  // }, [pathname]);
 
   return (
     <menu className="flex px-6 w-full h-full max-w-screen-2xl mx-auto">
@@ -64,7 +64,8 @@ export function MainMenu() {
           key={section}
           href={`/#${section}`}
           label={LABELS[section]}
-          selected={currentSection === section}
+          // selected={currentSection === section}
+          selected={false}
         />
       ))}
     </menu>

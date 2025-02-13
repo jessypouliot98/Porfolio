@@ -55,10 +55,17 @@ export function ProjectCardCarouselProvider({ children, mediaList }: React.Props
   )
 }
 
-export function ProjectCardCarouselDots() {
+export type ProjectCardCarouselDotsProps = {
+  className?: string;
+}
+
+export function ProjectCardCarouselDots({ className }: ProjectCardCarouselDotsProps) {
   return (
     <CarouselDots<Asset<"WITHOUT_UNRESOLVABLE_LINKS">>
-      className="px-4 py-2"
+      className={clsx(
+        "px-4 py-2",
+        className,
+      )}
       keyExtractor={(media) => media.sys.id}
       labelExtractor={(media, index) => {
         let label = `Select slide #${index + 1}`;

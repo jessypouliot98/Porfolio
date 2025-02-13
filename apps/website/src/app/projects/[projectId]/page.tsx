@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <div className="[--overlap:theme(spacing.96)] min-h-screen">
+    <div className="[--overlap:theme(spacing.96)] min-h-screen overflow-x-hidden">
       <Header
         className="pb-(--overlap)"
       >

@@ -6,7 +6,6 @@ import { assertDefined } from "@repo/util/src/assertDefined";
 import { clsx } from "clsx";
 import { lerp } from "@repo/util/src/math/lerp";
 import { clamp } from "@repo/util/src/math/clamp";
-import { assertNotDefined } from "@repo/util/src/assertNotDefined";
 import { isDefined } from "@repo/util/src/isDefined";
 
 export type VideoContentProps = {

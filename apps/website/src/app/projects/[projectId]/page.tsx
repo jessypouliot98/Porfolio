@@ -16,8 +16,6 @@ import {
 import { isDefined } from "@repo/util/src/isDefined";
 import { ProjectCardLinks } from "../../../components/ProjectCard/ProjectCard.Links";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
-import { IconLinkExternal } from "@repo/ui/src/components/icons";
-import { CarouselContext } from "@repo/ui/src/components/Carousel/CarouselContext";
 import {
   ProjectCardCarouselButtonOpenInNewTab
 } from "../../../components/ProjectCard/ProjectCardCarousel.ButtonOpenInNewTab";
@@ -45,7 +43,7 @@ export async function generateMetadata(
     keywords.push(tech.fields.name);
   }
 
-  let mediaList: Array<Asset<"WITHOUT_UNRESOLVABLE_LINKS">> = project.fields.mediaList?.filter((media) => !!media) ?? [];
+  let mediaList = project.fields.mediaList?.filter(isDefined) ?? [];
   if (project.fields.thumbnail) {
     mediaList = [project.fields.thumbnail, ...mediaList];
   }

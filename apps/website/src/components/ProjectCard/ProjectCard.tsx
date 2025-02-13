@@ -5,13 +5,12 @@ import { motion } from "motion/react";
 import React, { useMemo, useState } from "react";
 import Image, { ImageProps } from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
-import { IconLinkAlt, IconLinkExternal, IconX } from "@repo/ui/src/components/icons";
+import { IconLinkAlt, IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
 import { ProjectEntry } from "@repo/api/src/contentful/project/model";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { contentfulImageProps } from "../../utils/cms/client";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
-import { CarouselContext } from "@repo/ui/src/components/Carousel/CarouselContext";
 import { ProjectCardTechList } from "./ProjectCard.TechList";
 import { ProjectCardCarousel, ProjectCardCarouselDots, ProjectCardCarouselProvider } from "./ProjectCard.Carousel";
 import { ProjectCardTitle } from "./ProjectCard.Title";

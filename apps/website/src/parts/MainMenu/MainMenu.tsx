@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { clsx } from "clsx";
-import { assertDefined } from "@repo/util/src/assertDefined";
-import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
-import { usePathname } from "next/navigation";
 
 const SECTIONS = [
   "hero",
@@ -20,10 +17,10 @@ const LABELS = {
 } satisfies Record<typeof SECTIONS[number], string>
 
 export function MainMenu() {
-  const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
-  const currentSectionRef = useRef(currentSection);
-  currentSectionRef.current = currentSection;
-  const pathname = usePathname();
+  // const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
+  // const currentSectionRef = useRef(currentSection);
+  // currentSectionRef.current = currentSection;
+  // const pathname = usePathname();
 
   // useEffect(() => {
   //   if (pathname !== "/") return;

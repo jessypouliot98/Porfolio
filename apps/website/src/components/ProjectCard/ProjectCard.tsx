@@ -5,19 +5,18 @@ import { motion } from "motion/react";
 import React, { useMemo, useState } from "react";
 import Image, { ImageProps } from "next/image"
 import { Modal } from "@repo/ui/src/components/Modal/Modal";
-import { IconLinkExternal, IconX } from "@repo/ui/src/components/icons";
+import { IconLinkAlt, IconX } from "@repo/ui/src/components/icons";
 import { clsx } from "clsx";
-import { Badge } from "@repo/ui/src/components/Badge/Badge";
 import { ProjectEntry } from "@repo/api/src/contentful/project/model";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { contentfulImageProps } from "../../utils/cms/client";
 import { RichTextRender } from "@repo/ui/src/components/contentful/RichTextRender/RichTextRender";
-import { Carousel } from "@repo/ui/src/components/Carousel/Carousel";
-import { MediaContent } from "@repo/ui/src/components/contentful/MediaContent/MediaContent";
-import { ButtonLinkContentful } from "@repo/ui/src/components/contentful/ButtonLinkContentful/ButtonLinkContentful";
-import { CarouselProvider } from "@repo/ui/src/components/Carousel/CarouselProvider";
-import { CarouselDots } from "@repo/ui/src/components/Carousel/CarouselDots";
-import { CarouselContext } from "@repo/ui/src/components/Carousel/CarouselContext";
+import { ProjectCardTechList } from "./ProjectCard.TechList";
+import { ProjectCardCarousel, ProjectCardCarouselDots, ProjectCardCarouselProvider } from "./ProjectCard.Carousel";
+import { ProjectCardTitle } from "./ProjectCard.Title";
+import Link from "next/link";
+import { ProjectCardLinks } from "./ProjectCard.Links";
+import { ProjectCardCarouselButtonOpenInNewTab } from "./ProjectCardCarousel.ButtonOpenInNewTab";
 
 export type ProjectCardProps = {
   className?: string;
@@ -28,7 +27,8 @@ export type ProjectCardProps = {
 export function ProjectCard({ className, project, thumbnailLoading }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const id = project.sys.id
-  const { description, title, thumbnail, technologies } = project.fields;
+  const { description, title, thumbnail } = project.fields;
+  const technologies = useMemo(() => project.fields.technologies.filter((tech) => !!tech), [project.fields.technologies]);
   assertDefined(thumbnail, "thumbnail not defined");
 
   const mediaList = useMemo(() => {
@@ -45,22 +45,6 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
   }, [thumbnail, project.fields.mediaList]);
   const thumbnailSrc = contentfulImageProps(thumbnail).src;
   const thumbnailAlt = `${title} thumbnail`;
-  const renderTechListItems = technologies.map((tech) => {
-    assertDefined(tech, "project tech not defined");
-    return (
-      <li key={tech.sys.id}>
-        <Badge variant="secondary">{tech.fields.name}</Badge>
-      </li>
-    )
-  });
-  const renderLinkItems = project.fields.links?.map((link) => {
-    assertDefined(link, "project link not defined");
-    return (
-      <li key={link.sys.id}>
-        <ButtonLinkContentful link={link} />
-      </li>
-    )
-  })
 
   return (
     <>
@@ -100,18 +84,18 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
             <div
               className="absolute bottom-0 inset-x-0 p-1.5 text-white"
             >
-              <motion.h3
+              <ProjectCardTitle
+                as="h3"
+                id={id}
                 className="font-pixel text-xl leading-tight truncate"
-                layoutId={`${id}-title`}
               >
                 {title}
-              </motion.h3>
-              <motion.ul
-                className="w-full overflow-hidden flex gap-1"
-                layoutId={`${id}-techs`}
-              >
-                {renderTechListItems}
-              </motion.ul>
+              </ProjectCardTitle>
+              <ProjectCardTechList
+                id={id}
+                className="overflow-hidden"
+                technologies={technologies}
+              />
             </div>
           </motion.button>
         </Card>
@@ -125,28 +109,19 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
       >
         <Card asChild className="relative">
           <motion.div layoutId={`${id}-container`}>
-            <CarouselProvider data={mediaList}>
+            <ProjectCardCarouselProvider mediaList={mediaList}>
               <div className="relative">
-                <motion.div
-                  className="relative aspect-video bg-gray-200"
-                  layoutId={`${id}-image`}
+                <ProjectCardCarousel
+                  id={project.sys.id}
+                  className="aspect-video"
+                />
+                <Link
+                  className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 top-4 left-4"
+                  aria-label="Open page"
+                  href={`/projects/${project.sys.id}`}
                 >
-                  <Carousel<typeof mediaList[number]>
-                    className="size-full"
-                    keyExtractor={(media) => media.sys.id}
-                    renderItem={({ item: media, focused }) => (
-                      <MediaContent
-                        className="size-full"
-                        classNames={{
-                          image: "object-contain pointer-events-none",
-                          video: ""
-                        }}
-                        media={media}
-                        focused={focused}
-                      />
-                    )}
-                  />
-                </motion.div>
+                  <IconLinkAlt/>
+                </Link>
                 <button
                   type="button"
                   className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 top-4 right-4"
@@ -155,47 +130,29 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 >
                   <IconX/>
                 </button>
-                <CarouselContext.Consumer>
-                  {(ctx) => {
-                    assertDefined(ctx, "ctx must be defined");
-                    const item = ctx.data[ctx.currentIndex] as typeof mediaList[number] | undefined;
-                    assertDefined(item, "item must be defined");
-                    const file = item.fields.file;
-                    assertDefined(file, "file must be defined");
-
-                    return (
-                      <a
-                        type="button"
-                        className="block absolute transition bg-black/30 hover:bg-black/40 backdrop-blur text-xl text-white p-2 bottom-4 right-4"
-                        aria-label="Open"
-                        href={"https:" + file.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <IconLinkExternal/>
-                      </a>
-                    )
-                  }}
-                </CarouselContext.Consumer>
+                <ProjectCardCarouselButtonOpenInNewTab
+                  className="absolute bottom-4 right-4"
+                />
               </div>
-              <CarouselDots<typeof mediaList[number]>
-                className="px-4 py-2"
-                keyExtractor={(media) => media.sys.id}
+              <ProjectCardCarouselDots/>
+            </ProjectCardCarouselProvider>
+            <div className="px-4 pt-4 pb-6 space-y-4">
+              <ProjectCardTechList
+                className="flex-wrap"
+                id={id}
+                technologies={technologies}
               />
-            </CarouselProvider>
-            <div className="px-4 pb-6 space-y-4">
-            <motion.ul
-                className="flex flex-wrap gap-1"
-                layoutId={`${id}-techs`}
+              <Link
+                className="transition-colors underline inline-block font-pixel text-6xl text-blue-500 hover:text-blue-600"
+                href={`/projects/${project.sys.id}`}
               >
-                {renderTechListItems}
-              </motion.ul>
-              <motion.h2
-                className="font-pixel text-6xl text-blue-500"
-                layoutId={`${id}-title`}
-              >
-              {title}
-              </motion.h2>
+                <ProjectCardTitle
+                  as="h2"
+                  id={id}
+                >
+                  {title}
+                </ProjectCardTitle>
+              </Link>
               <div>
                 {project.fields.content ? (
                   <RichTextRender
@@ -205,9 +162,9 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                   <p>{description}</p>
                 )}
               </div>
-              <ul className="flex flex-wrap gap-2">
-                {renderLinkItems}
-              </ul>
+              {!!project.fields.links && (
+                <ProjectCardLinks className="justify-end" links={project.fields.links} />
+              )}
             </div>
           </motion.div>
         </Card>

@@ -14,7 +14,14 @@ const nextConfig: NextConfig = {
         hostname: "images.ctfassets.net",
       },
     ],
-  }
+  },
+  redirects: () => Promise.resolve([
+    {
+      source: "/projects",
+      destination: "/#projects",
+      permanent: false,
+    }
+  ])
 };
 
 export default nextConfig;

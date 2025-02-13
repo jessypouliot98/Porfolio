@@ -5,6 +5,7 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import { assertDefined } from "@repo/util/src/assertDefined";
 import { convertRemToPixels } from "../../utils/css/convertRemToPixels";
+import { usePathname } from "next/navigation";
 
 const SECTIONS = [
   "hero",
@@ -22,8 +23,10 @@ export function MainMenu() {
   const [currentSection, setCurrentSection] = useState<string>(SECTIONS[0]);
   const currentSectionRef = useRef(currentSection);
   currentSectionRef.current = currentSection;
+  const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname !== "/") return;
     const abortController = new AbortController();
 
     const navHeightRem = parseFloat(getComputedStyle(document.body).getPropertyValue("--h-nav"));
@@ -52,7 +55,7 @@ export function MainMenu() {
     );
 
     return () => abortController.abort();
-  }, []);
+  }, [pathname]);
 
   return (
     <menu className="flex px-6 w-full h-full max-w-screen-2xl mx-auto">

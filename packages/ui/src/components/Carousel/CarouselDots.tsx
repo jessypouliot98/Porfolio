@@ -4,10 +4,11 @@ import { IconCaretLeft, IconCaretRight } from "../icons";
 
 export type CarouselDotsProps<TData> = {
   className?: string;
-  keyExtractor: (key: TData) => string;
+  labelExtractor: (data: TData, index: number) => string;
+  keyExtractor: (data: TData, index: number) => string;
 }
 
-export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsProps<TData>) {
+export function CarouselDots<TData>({ className, keyExtractor, labelExtractor }: CarouselDotsProps<TData>) {
   const { data, currentIndex, setCurrentIndex } = useCarouselData<TData>();
   return (
     <div className={clsx(
@@ -17,6 +18,7 @@ export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsPro
       <button
         type="button"
         className="transition-colors text-xl p-1 text-blue-500 hover:bg-blue-100"
+        aria-label="previous"
         onClick={() => {
           setCurrentIndex((prev) => {
             if (prev <= 0) {
@@ -31,10 +33,11 @@ export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsPro
       <ol
         className="flex gap-2 justify-center items-center flex-wrap"
         role="listbox"
+        aria-label="Carousel slide options"
       >
         {data.map((item, index) => (
           <li
-            key={keyExtractor(item)}
+            key={keyExtractor(item, index)}
             className="group/dot"
             role="option"
             aria-selected={index === currentIndex}
@@ -45,6 +48,7 @@ export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsPro
                 "block size-4 rounded-full transition-colors",
                 "bg-blue-500 group-aria-selected/dot:bg-orange-500"
               )}
+              aria-label={labelExtractor(item, index)}
               onClick={() => setCurrentIndex(index)}
             />
           </li>
@@ -53,6 +57,7 @@ export function CarouselDots<TData>({ className, keyExtractor }: CarouselDotsPro
       <button
         type="button"
         className="transition-colors text-xl p-1 text-blue-500 hover:bg-blue-100"
+        aria-label="next"
         onClick={() => {
           setCurrentIndex((prev) => {
             if (prev >= data.length - 1) {

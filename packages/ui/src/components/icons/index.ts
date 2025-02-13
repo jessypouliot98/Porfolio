@@ -12,6 +12,7 @@ export {
   BiLogoChrome as IconLogoChrome,
   BiLogoWordpress as IconLogoWordpress,
   BiLinkExternal as IconLinkExternal,
+  BiLinkAlt as IconLinkAlt,
   BiCaretLeft as IconCaretLeft,
   BiCaretRight as IconCaretRight,
   BiLogoDiscord as IconLogoDiscord,

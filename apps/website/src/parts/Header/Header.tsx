@@ -7,7 +7,7 @@ import { MainMenu } from "../MainMenu/MainMenu";
 
 export type HeaderProps = {
   className?: string;
-  backgroundContent: React.ReactNode;
+  backgroundContent?: React.ReactNode;
 };
 
 export function Header({ children, className, backgroundContent }: React.PropsWithChildren<HeaderProps>) {

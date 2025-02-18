@@ -7,6 +7,7 @@ import { clsx } from "clsx";
 import { lerp } from "@repo/util/src/math/lerp";
 import { clamp } from "@repo/util/src/math/clamp";
 import { isDefined } from "@repo/util/src/isDefined";
+import { VideoContained } from "../../VideoContained/VideoContained";
 
 export type VideoContentProps = {
   className?: string;
@@ -133,7 +134,7 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
 
   return (
     <div className={clsx("relative", className)} ref={setContainer}>
-      <video
+      <VideoContained
         ref={setVideo}
         className={className}
         src={"https:" + file.url}

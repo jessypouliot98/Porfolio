@@ -105,7 +105,13 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
     }
 
     video.addEventListener("pause", stopLoop, { signal: abortController.signal });
-    video.addEventListener("play", startLoop, { signal: abortController.signal });
+    video.addEventListener(
+      "play",
+      () => {
+        rect = container.getBoundingClientRect();
+        startLoop();
+      },
+      { signal: abortController.signal });
     if (!video.paused) {
       startLoop();
     }

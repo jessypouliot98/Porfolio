@@ -6,6 +6,7 @@ import { LinkSkeleton } from "../link/model";
 export type Project = {
   title: EntryFieldTypes.Text;
   slug: EntryFieldTypes.Text;
+  date: EntryFieldTypes.Text;
   level: EntryFieldTypes.Number;
   description: EntryFieldTypes.Text;
   technologies: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TechnologySkeleton>>;

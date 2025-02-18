@@ -18,6 +18,8 @@ import Link from "next/link";
 import { ProjectCardLinks } from "./ProjectCard.Links";
 import { ProjectCardCarouselButtonOpenInNewTab } from "./ProjectCardCarousel.ButtonOpenInNewTab";
 
+const MOUSE_LEFT = 0;
+
 export type ProjectCardProps = {
   className?: string;
   project: ProjectEntry;
@@ -59,9 +61,14 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
           className="block text-left size-full !bg-black"
           aria-description={description}
         >
-          <motion.button
-            type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
+          <motion.a
+            href={`/projects/${project.sys.id}`}
+            onClick={(ev) => {
+              if (ev.button === MOUSE_LEFT) {
+                ev.preventDefault();
+                setIsOpen(true);
+              }
+            }}
             layoutId={`${id}-container`}
           >
             <motion.div
@@ -97,7 +104,7 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                 technologies={technologies}
               />
             </div>
-          </motion.button>
+          </motion.a>
         </Card>
       </div>
       <Modal
@@ -134,25 +141,28 @@ export function ProjectCard({ className, project, thumbnailLoading }: ProjectCar
                   className="absolute bottom-4 right-4"
                 />
               </div>
-              <ProjectCardCarouselDots/>
+              <ProjectCardCarouselDots className="px-4 py-6"/>
             </ProjectCardCarouselProvider>
-            <div className="px-4 pt-4 pb-6 space-y-4">
+            <div className="px-4 pb-6 space-y-6">
               <ProjectCardTechList
                 className="flex-wrap"
                 id={id}
                 technologies={technologies}
               />
-              <Link
-                className="transition-colors underline inline-block font-pixel text-6xl text-blue-500 hover:text-blue-600"
-                href={`/projects/${project.sys.id}`}
-              >
-                <ProjectCardTitle
-                  as="h2"
-                  id={id}
+              <div>
+                <div className="font-medium text-gray-600 text-xs">{project.fields.date}</div>
+                <Link
+                  className="transition-colors underline inline-block font-pixel text-6xl text-blue-500 hover:text-blue-600"
+                  href={`/projects/${project.sys.id}`}
                 >
-                  {title}
-                </ProjectCardTitle>
-              </Link>
+                  <ProjectCardTitle
+                    as="h2"
+                    id={id}
+                  >
+                    {title}
+                  </ProjectCardTitle>
+                </Link>
+              </div>
               <div>
                 {project.fields.content ? (
                   <RichTextRender

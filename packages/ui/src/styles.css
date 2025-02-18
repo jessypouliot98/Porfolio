@@ -13,17 +13,14 @@
   @apply mt-[1.4em];
 }
 
+[data-is="contentful-rich-text"] li>ul:not(:first-child),
+[data-is="contentful-rich-text"] li>ol:not(:first-child) { @apply mt-0 py-[0.5em]; }
+
 [data-is="contentful-rich-text"] ul,
 [data-is="contentful-rich-text"] ol { @apply pl-4 space-y-[0.5em]; }
 
 [data-is="contentful-rich-text"] ul { @apply list-disc; }
-
 [data-is="contentful-rich-text"] ol { @apply list-decimal; }
-
-[data-is="contentful-rich-text"] ul>li:first-child,
-[data-is="contentful-rich-text"] ol>li:first-child {
-  @apply mt-[0.5em];
-}
 
 [data-is="contentful-rich-text"] blockquote {
   @apply pl-4 py-2 bg-gray-100 border-l-4 border-gray-300

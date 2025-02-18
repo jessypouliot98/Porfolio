@@ -80,14 +80,17 @@ export default async function ProjectPage({ params }: PageProps) {
       <Header
         className="pb-(--overlap)"
       >
-        <div className="relative max-w-screen-2xl mx-auto px-6 py-12 space-y-4">
-          <ProjectCardTitle
-            as="h2"
-            id={projectId}
-            className="font-pixel text-6xl text-blue-500"
-          >
-            {project.fields.title}
-          </ProjectCardTitle>
+        <div className="relative max-w-screen-2xl mx-auto px-6 py-12 space-y-6">
+          <div>
+            <div className="font-medium text-gray-300 text-xs">{project.fields.date}</div>
+            <ProjectCardTitle
+              as="h2"
+              id={projectId}
+              className="font-pixel text-6xl text-blue-500"
+            >
+              {project.fields.title}
+            </ProjectCardTitle>
+          </div>
           <ProjectCardTechList
             id={projectId}
             className="max-w-screen-sm flex-wrap"
@@ -106,19 +109,21 @@ export default async function ProjectPage({ params }: PageProps) {
         role="main"
         className="relative w-full max-w-screen-2xl mx-auto px-6 -mt-[var(--overlap)] space-y-12 py-12"
       >
-        <ProjectCardCarouselProvider mediaList={mediaList}>
-          <div className="relative aspect-video max-w-screen-md mx-auto">
-            <ProjectCardCarousel
-              id={project.sys.id}
-              className="relative size-full"
-              overflow
-            />
-            <ProjectCardCarouselButtonOpenInNewTab
-              className="absolute bottom-4 right-4"
-            />
-          </div>
-          <ProjectCardCarouselDots/>
-        </ProjectCardCarouselProvider>
+        <div>
+          <ProjectCardCarouselProvider mediaList={mediaList}>
+            <div className="relative aspect-video max-w-screen-md mx-auto">
+              <ProjectCardCarousel
+                id={project.sys.id}
+                className="relative size-full"
+                overflow
+              />
+              <ProjectCardCarouselButtonOpenInNewTab
+                className="absolute bottom-4 right-4"
+              />
+            </div>
+            <ProjectCardCarouselDots className="px-4 py-6"/>
+          </ProjectCardCarouselProvider>
+        </div>
         <div className="max-w-screen-md px-0 md:px-12">
           {project.fields.content ? (
             <RichTextRender

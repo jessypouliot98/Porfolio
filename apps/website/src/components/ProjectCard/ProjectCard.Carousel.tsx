@@ -62,10 +62,7 @@ export type ProjectCardCarouselDotsProps = {
 export function ProjectCardCarouselDots({ className }: ProjectCardCarouselDotsProps) {
   return (
     <CarouselDots<Asset<"WITHOUT_UNRESOLVABLE_LINKS">>
-      className={clsx(
-        "px-4 py-2",
-        className,
-      )}
+      className={className}
       keyExtractor={(media) => media.sys.id}
       labelExtractor={(media, index) => {
         let label = `Select slide #${index + 1}`;

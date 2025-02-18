@@ -13,17 +13,24 @@ export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.strict,
+  ...tseslint.config({
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-floating-promises": "warn",
+      "@typescript-eslint/no-namespace": "off"
+    },
+  }),
   {
     plugins: {
       turbo: turboPlugin,
     },
     rules: {
-      "turbo/no-undeclared-env-vars": ["warn", {
-        allowList: [
-          "CONTENTFUL_SPACE_ID",
-          "CONTENTFUL_ACCESS_TOKEN",
-        ]
-      }],
+      "turbo/no-undeclared-env-vars": "warn",
     },
   },
   {
@@ -33,10 +40,5 @@ export const config = [
   },
   {
     ignores: ["dist/**", "postcss.config.js"],
-  },
-  {
-    rules: {
-      "@typescript-eslint/no-namespace": "off"
-    }
   }
 ];

@@ -136,22 +136,26 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
     <div className={clsx("relative", className)} ref={setContainer}>
       <VideoContained
         ref={setVideo}
-        className={className}
+        classNames={{
+          container: "size-full overflow-hidden",
+          canvas: "blur-xs brightness-50"
+        }}
         src={"https:" + file.url}
         aria-description={media.fields.description}
         muted
         loop
         // Fixes ios play in fullscreen
         playsInline
-      />
-      <svg
-        ref={setSvg}
-        className="[--stroke:theme(spacing.4)] absolute inset-0 pointer-events-none opacity-70"
-        viewBox="0 0 0 0"
       >
-        <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="top-left" d="" />
-        <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="bottom-right" d="" />
-      </svg>
+        <svg
+          ref={setSvg}
+          className="[--stroke:theme(spacing.4)] absolute inset-0 z-[1] pointer-events-none opacity-70"
+          viewBox="0 0 0 0"
+        >
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="top-left" d=""/>
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="bottom-right" d=""/>
+        </svg>
+      </VideoContained>
     </div>
   )
 }

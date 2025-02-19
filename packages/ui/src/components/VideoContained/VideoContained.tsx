@@ -26,6 +26,7 @@ export function VideoContained({
     const video = videoRef.current;
     if (!canvas || !video) return;
 
+    let hasFrame = false;
     const isReady = () => video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA;
     const abortController = new AbortController();
     const ctx = "createImageBitmap" in window ? canvas.getContext("bitmaprenderer") : canvas.getContext("2d");
@@ -65,17 +66,49 @@ export function VideoContained({
       interval = setInterval(drawImageBlob, 1000 / backgroundFrameRate);
     }
 
-    if (!video.paused) {
+    const initFirstFrame = async () => {
+      if (hasFrame) return;
+      if (isReady() && result(drawImageBlob).success) {
+        hasFrame = true;
+        return;
+      }
+      const { success } = await exponentialRetry(({ resolve, next, abort }) => {
+        if (hasFrame || abortController.signal.aborted) {
+          abort();
+        } else if (isReady() && result(drawImageBlob).success) {
+          resolve();
+        } else {
+          next();
+        }
+      }, {
+        retryCount: 5,
+        initialDelay: 50,
+      });
+      if (success) {
+        hasFrame = true;
+      }
+    }
+
+    if (!video.paused && isReady()) {
       startLoop();
     }
 
     const resizeObserver = new ResizeObserver(() => {
-      drawImageBlob();
+      if (isReady() && hasFrame) {
+        // Update EXISTING frame
+        drawImageBlob();
+      }
     });
     resizeObserver.observe(video);
 
-    const intersectionObserver = new IntersectionObserver(() => {
-      drawImageBlob();
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting && isReady()) {
+        /**
+         * Issue where video outside the viewport will not draw on canvas,
+         * trigger first frame insertion when the component intersects with viewport
+         */
+        void initFirstFrame();
+      }
     });
     intersectionObserver.observe(video);
 
@@ -86,34 +119,18 @@ export function VideoContained({
       drawImageBlob();
       stopLoop();
     }, { signal: abortController.signal });
-    video.addEventListener("load", () => {
-      drawImageBlob();
-    }, { signal: abortController.signal });
     video.addEventListener("loadeddata", () => {
       drawImageBlob();
+      if (!video.paused) {
+        startLoop();
+      }
     }, { signal: abortController.signal });
 
-
-    if (isReady()) {
-      result(drawImageBlob)
-    } else {
-      // Hack "loadeddata" event, it's never handled for some reason
-      void exponentialRetry(({ resolve, next, abort }) => {
-        if (abortController.signal.aborted) {
-          abort();
-        } else if (isReady()) {
-          drawImageBlob();
-          resolve();
-        } else {
-          next();
-        }
-      }, {
-        retryCount: 5,
-        initialDelay: 50,
-      })
-    }
+    void initFirstFrame();
 
     return () => {
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
       abortController.abort();
       stopLoop();
       if (ctx && "reset" in ctx) {

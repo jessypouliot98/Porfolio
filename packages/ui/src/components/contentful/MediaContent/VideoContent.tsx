@@ -138,7 +138,8 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
         ref={setVideo}
         classNames={{
           container: "size-full overflow-hidden",
-          canvas: "blur-xs brightness-50"
+          canvasContainer: "bg-black/50",
+          canvas: "blur-lg brightness-30"
         }}
         src={"https:" + file.url}
         aria-description={media.fields.description}

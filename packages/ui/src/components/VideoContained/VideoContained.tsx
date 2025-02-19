@@ -2,17 +2,13 @@ import { ComponentPropsWithRef, useEffect, useRef } from "react";
 import { bindRefs } from "../../utils/bindRefs";
 import { isNotDefined } from "@repo/util/src/isNotDefined";
 import { clsx } from "clsx";
-import { vector2ScaleContained } from "@repo/util/src/math/vector2ScaleContained";
-import { sleep } from "@repo/util/src/sleep";
 import { exponentialRetry } from "@repo/util/src/exponentialRetry";
 import { result } from "@repo/util/src/result";
 
 export type VideoContainedProps = ComponentPropsWithRef<"video"> & {
-  classNames?: Partial<Record<"container" | "video" | "canvas", string>>
+  classNames?: Partial<Record<"container" | "video" | "canvasContainer" | "canvas", string>>
   backgroundFrameRate?: number;
 };
-
-// https://github.com/AxisCommunications/media-stream-library-js/blob/main/src/streams/components/canvas/index.ts
 
 export function VideoContained({
   ref,
@@ -43,16 +39,18 @@ export function VideoContained({
       const ctxBitmap = ctx;
       drawImageBlob = async () => {
         if (!isReady()) return;
-        const [width, height] = vector2ScaleContained([video.videoWidth, video.videoHeight], [canvas.width, canvas.height]);
-        // console.log({ width, height, aspectContained: height / width, aspectSource: video.videoHeight / video.videoWidth });
         const bitmap = await createImageBitmap(video)
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
         ctxBitmap.transferFromImageBitmap(bitmap);
       }
     } else {
       // Fallback
       const ctx2d = ctx;
-      drawImageBlob = async () => {
-        ctx2d.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      drawImageBlob = () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx2d.drawImage(video, 0, 0, canvas.width, canvas.height);
       }
     }
 
@@ -138,13 +136,20 @@ export function VideoContained({
           classNames?.video,
         )}
       />
-      <canvas
-        ref={canvasRef}
+      <div
         className={clsx(
           "absolute inset-0 size-full",
-          classNames?.canvas
+          classNames?.canvasContainer
         )}
-      />
+      >
+        <canvas
+          ref={canvasRef}
+          className={clsx(
+            "size-full object-cover",
+            classNames?.canvas,
+          )}
+        />
+      </div>
       {children}
     </div>
   )

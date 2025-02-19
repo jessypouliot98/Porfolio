@@ -3,6 +3,7 @@ import { assertDefined } from "@repo/util/src/assertDefined";
 import React from "react";
 import { clsx } from "clsx";
 import { VideoContent } from "./VideoContent";
+import { ImageContained } from "../../ImageContained/ImageContained";
 
 export type MediaContentProps = {
   className?: string;
@@ -27,8 +28,13 @@ export function MediaContent({ className, classNames, media, focused }: MediaCon
 
   if (file.contentType.startsWith("image/")) {
     return (
-      <img
+      <ImageContained
         className={clsx(className, classNames?.image)}
+        classNames={{
+          container: "size-full overflow-hidden",
+          bgImageContainer: "bg-black/70 [--p:theme(spacing.8)] !size-[calc(100%+(2*var(--p)))] !inset-[calc(-1*var(--p))]",
+          bgImage: "blur-md brightness-30"
+        }}
         src={"https://" + file.url}
         alt={media.fields.description ?? file.fileName}
         loading="lazy"

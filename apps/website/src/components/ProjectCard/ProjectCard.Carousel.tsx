@@ -29,7 +29,10 @@ export function ProjectCardCarousel({ id, className, overflow = false }: React.P
         keyExtractor={(media) => media.sys.id}
         renderItem={({ item: media, focused }) => (
           <MediaContent
-            className="size-full bg-gray-200"
+            className={clsx(
+              "transition-[filter] size-full bg-gray-200",
+              focused ? "brightness-100" : "brightness-70",
+            )}
             classNames={{
               image: "object-contain pointer-events-none",
               video: ""

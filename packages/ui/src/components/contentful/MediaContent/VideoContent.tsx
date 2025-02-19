@@ -7,6 +7,7 @@ import { clsx } from "clsx";
 import { lerp } from "@repo/util/src/math/lerp";
 import { clamp } from "@repo/util/src/math/clamp";
 import { isDefined } from "@repo/util/src/isDefined";
+import { VideoContained } from "../../VideoContained/VideoContained";
 
 export type VideoContentProps = {
   className?: string;
@@ -48,7 +49,7 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
       const total = width + height;
       const heightProgressRange = height / total;
       const widthProgressRange = width / total;
-      const progress = video.currentTime / video.duration;
+      const progress = (video.duration > 0) ? (video.currentTime / video.duration) : 0;
 
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
@@ -133,24 +134,29 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
 
   return (
     <div className={clsx("relative", className)} ref={setContainer}>
-      <video
+      <VideoContained
         ref={setVideo}
-        className={className}
+        classNames={{
+          container: "size-full overflow-hidden",
+          canvasContainer: "bg-black/70 [--p:theme(spacing.8)] !size-[calc(100%+(2*var(--p)))] !inset-[calc(-1*var(--p))]",
+          canvas: "blur-md brightness-30"
+        }}
         src={"https:" + file.url}
         aria-description={media.fields.description}
         muted
         loop
         // Fixes ios play in fullscreen
         playsInline
-      />
-      <svg
-        ref={setSvg}
-        className="[--stroke:theme(spacing.4)] absolute inset-0 pointer-events-none opacity-70"
-        viewBox="0 0 0 0"
       >
-        <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="top-left" d="" />
-        <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="bottom-right" d="" />
-      </svg>
+        <svg
+          ref={setSvg}
+          className="[--stroke:theme(spacing.2)] absolute inset-0 z-[1] pointer-events-none opacity-70"
+          viewBox="0 0 0 0"
+        >
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-orange-500" data-bar="top-left" d=""/>
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-orange-500" data-bar="bottom-right" d=""/>
+        </svg>
+      </VideoContained>
     </div>
   )
 }

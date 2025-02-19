@@ -16,8 +16,17 @@ export const config = [
   ...tseslint.config({
     languageOptions: {
       parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        projectService: {
+          allowDefaultProject: [
+            "*.config.js",
+            "*.config.mjs",
+            "*.config.ts"
+          ],
+          // https://typescript-eslint.io/packages/parser/#loadtypescriptplugins -- Maybe turn on?
+          loadTypeScriptPlugins: false,
+        },
+        // sub-package root
+        tsconfigRootDir: process.cwd(),
       },
     },
     rules: {

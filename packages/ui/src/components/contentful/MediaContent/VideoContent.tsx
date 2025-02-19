@@ -49,7 +49,7 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
       const total = width + height;
       const heightProgressRange = height / total;
       const widthProgressRange = width / total;
-      const progress = video.currentTime / video.duration;
+      const progress = (video.duration > 0) ? (video.currentTime / video.duration) : 0;
 
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
@@ -150,11 +150,11 @@ export function VideoContent({ className, media, focused }: VideoContentProps) {
       >
         <svg
           ref={setSvg}
-          className="[--stroke:theme(spacing.4)] absolute inset-0 z-[1] pointer-events-none opacity-70"
+          className="[--stroke:theme(spacing.2)] absolute inset-0 z-[1] pointer-events-none opacity-70"
           viewBox="0 0 0 0"
         >
-          <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="top-left" d=""/>
-          <path className="fill-none stroke stroke-(length:--stroke) stroke-blue-500" data-bar="bottom-right" d=""/>
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-orange-500" data-bar="top-left" d=""/>
+          <path className="fill-none stroke stroke-(length:--stroke) stroke-orange-500" data-bar="bottom-right" d=""/>
         </svg>
       </VideoContained>
     </div>

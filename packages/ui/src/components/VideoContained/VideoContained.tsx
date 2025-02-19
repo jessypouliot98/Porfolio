@@ -120,7 +120,7 @@ export function VideoContained({
       stopLoop();
     }, { signal: abortController.signal });
     video.addEventListener("loadeddata", () => {
-      drawImageBlob();
+      void initFirstFrame();
       if (!video.paused) {
         startLoop();
       }

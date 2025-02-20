@@ -18,9 +18,8 @@ export const config = [
       parserOptions: {
         projectService: {
           allowDefaultProject: [
-            "*.config.js",
-            "*.config.mjs",
-            "*.config.ts"
+            "eslint.config.mjs",
+            "tailwind.config.ts",
           ],
           // https://typescript-eslint.io/packages/parser/#loadtypescriptplugins -- Maybe turn on?
           loadTypeScriptPlugins: false,

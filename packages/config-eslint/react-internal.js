@@ -8,8 +8,8 @@ import { config as baseConfig } from "./base.js";
  *
  * @type {import("eslint").Linter.Config} */
 export const config = [
-  pluginReact.configs.flat.recommended,
   ...baseConfig,
+  pluginReact.configs.flat.recommended,
   {
     languageOptions: {
       ...pluginReact.configs.flat.recommended.languageOptions,

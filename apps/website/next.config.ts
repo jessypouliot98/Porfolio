@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import toolbarPlugin from "@vercel/toolbar/plugins/next";
 
 const nextConfig: NextConfig = {
   typescript: {
@@ -24,4 +25,5 @@ const nextConfig: NextConfig = {
   ])
 };
 
-export default nextConfig;
+const withVercelToolbar = toolbarPlugin();
+export default withVercelToolbar(nextConfig);

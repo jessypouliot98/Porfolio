@@ -5,6 +5,7 @@ import "./globals.css";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 const lexendSans = Lexend({
   variable: "--font-sans",
@@ -18,10 +19,21 @@ const micro5 = Jersey_15({
   subsets: ["latin"],
 });
 
+const title = "Jessy Pouliot | Portfolio";
+const description = "Experienced full-stack developer with 5 years of experience in the industry developing and maintaining web & mobile applications with a strong focus on Typescript based technologies such as Next.js and React-Native";
+const applicationName = "Jessy Pouliot's Portfolio";
+
 export const metadata: Metadata = {
-  title: "Jessy Pouliot | Portfolio",
-  description: "Experienced full-stack developer with 5 years of experience in the industry developing and maintaining web & mobile applications with a strong focus on Typescript based technologies such as Next.js and React-Native",
+  title,
+  description,
+  applicationName,
   keywords: "typescript, nextjs, react, react-native, tailwindcss, front end, back end, full-stack, software engineer, montreal, quebec, canada",
+  openGraph: {
+    siteName: applicationName,
+    url: "https://jessypouliot.ca/",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
@@ -31,6 +43,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         {children}
         <Analytics/>
         <SpeedInsights/>
+        {process.env.NODE_ENV === "development" && <VercelToolbar />}
       </body>
     </html>
   );

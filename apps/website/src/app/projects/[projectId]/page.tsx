@@ -5,7 +5,7 @@ import { Header } from "../../../parts/Header/Header";
 import { Footer } from "../../../parts/Footer/Footer";
 import { ProjectCardTechList } from "../../../components/ProjectCard/ProjectCard.TechList";
 import { assertDefined } from "@repo/util/src/assertDefined";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { Asset } from "@repo/api/src/contentful";
 import { ProjectCardTitle } from "../../../components/ProjectCard/ProjectCard.Title";
 import {
@@ -28,8 +28,15 @@ const getProject = cache((projectId: string) => queryProject(contentfulClient, p
 
 export async function generateMetadata(
   { params }: PageProps,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { projectId } = await params;
+  const [
+    parentMetadata,
+    { projectId }
+  ] = await Promise.all([
+    parent,
+    params,
+  ]);
   const project = await getProject(projectId);
 
   const keywords = [
@@ -52,13 +59,19 @@ export async function generateMetadata(
     title: project.fields.title,
     description: project.fields.description,
     keywords: keywords,
+    applicationName: parentMetadata.applicationName ?? undefined,
     openGraph: {
+      siteName: parentMetadata.openGraph?.siteName,
+      url: `https://jessypouliot.ca/projects/${projectId}`,
       images: mediaList
+        .filter((media) => media.fields.file?.contentType.includes("image/"))
         .map((media) => {
           assertDefined(media.fields.file, "file is expected to be defined");
           return "https:" + media.fields.file.url;
-        })
-    }
+        }),
+      title: project.fields.title,
+      description: project.fields.description,
+    },
   }
 }
 

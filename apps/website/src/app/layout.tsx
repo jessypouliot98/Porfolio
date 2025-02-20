@@ -19,10 +19,21 @@ const micro5 = Jersey_15({
   subsets: ["latin"],
 });
 
+const title = "Jessy Pouliot | Portfolio";
+const description = "Experienced full-stack developer with 5 years of experience in the industry developing and maintaining web & mobile applications with a strong focus on Typescript based technologies such as Next.js and React-Native";
+const applicationName = "Jessy Pouliot's Portfolio";
+
 export const metadata: Metadata = {
-  title: "Jessy Pouliot | Portfolio",
-  description: "Experienced full-stack developer with 5 years of experience in the industry developing and maintaining web & mobile applications with a strong focus on Typescript based technologies such as Next.js and React-Native",
+  title,
+  description,
+  applicationName,
   keywords: "typescript, nextjs, react, react-native, tailwindcss, front end, back end, full-stack, software engineer, montreal, quebec, canada",
+  openGraph: {
+    siteName: applicationName,
+    url: "https://jessypouliot.ca/",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {

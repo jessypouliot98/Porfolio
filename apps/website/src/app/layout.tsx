@@ -5,6 +5,7 @@ import "./globals.css";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 const lexendSans = Lexend({
   variable: "--font-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         {children}
         <Analytics/>
         <SpeedInsights/>
+        {process.env.NODE_ENV === "development" && <VercelToolbar />}
       </body>
     </html>
   );

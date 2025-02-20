@@ -62,7 +62,7 @@ export async function generateMetadata(
     applicationName: parentMetadata.applicationName ?? undefined,
     openGraph: {
       siteName: parentMetadata.openGraph?.siteName,
-      url: parentMetadata.openGraph?.url ? new URL(`/projects/${projectId}`, parentMetadata.openGraph.url) : undefined,
+      url: `https://jessypouliot.ca/projects/${projectId}`,
       images: mediaList
         .filter((media) => media.fields.file?.contentType.includes("image/"))
         .map((media) => {
